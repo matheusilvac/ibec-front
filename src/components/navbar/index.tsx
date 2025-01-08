@@ -14,12 +14,11 @@ export const NavBar = () => {
           </Link>
         </div>
         <div className=" h-full flex justify-center items-center">
-          <ul className="w-full flex justify-center gap-8 uppercase text-sm md:text-md">
+          <ul className="w-full flex justify-center gap-2 md:gap-8 uppercase text-sm md:text-md">
             <Link href="/">inicio</Link>
             <Link href="/">curso</Link>
             <Link href="/">sobre</Link>
             <Link href="/">livraria</Link>
-            <Link href="/">contato</Link>
           </ul>
         </div>
       </div>

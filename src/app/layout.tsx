@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={`${lora.className} bg-[#f0f0f0] text-white`}>
+      <body className={`${lora.className} bg-[#f0f0f0] text-white w-full h-auto`}>
         <NavBar/>
         {children}
         <Footer/>
