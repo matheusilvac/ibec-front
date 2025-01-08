@@ -9,12 +9,12 @@ export const NavBar = () => {
             <img
               src="/logo_ibec.png"
               alt="Logo Entrada Certa"
-              className=" h-20 object-fill"
+              className="h-14 md:h-20 object-fill"
             ></img>
           </Link>
         </div>
         <div className=" h-full flex justify-center items-center">
-          <ul className="w-full flex justify-center gap-8 uppercase">
+          <ul className="w-full flex justify-center gap-8 uppercase text-sm md:text-md">
             <Link href="/">inicio</Link>
             <Link href="/">curso</Link>
             <Link href="/">sobre</Link>
