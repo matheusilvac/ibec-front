@@ -7,10 +7,10 @@ export default function Home() {
   return (
     <div className="w-full h-full flex flex-col pt-32 pb-10 text-[#0A1A2D]">
       <div className="w-full h-full flex flex-col justify-center items-center mb-20 px-5 md:px-20">
-        <div className="w-full h-full flex flex-col sm:flex-row justify-center md:justify-around items-center mb-14 px-5 md:px-10">
+        <div className="w-full h-full flex flex-col sm:flex-row justify-center md:justify-around items-center mb-10 sm:mb-14 px-0 sm:px-5">
           <div className="w-full h-full sm:w-1/2 justify-center items-center flex text-start mb-5 sm:mb-0">
-            <h1 className="text-3xl md:text-7xl text-center sm:text-left uppercase font-semibold">
-              Instítuto <br />Bíblico de <br /> Educação <br /> Cristã
+            <h1 className="text-4xl md:text-7xl text-center sm:text-left uppercase font-semibold">
+              Instítuto Bíblico de <br /> Educação Cristã
             </h1>
           </div>
           <div className="w-full h-full sm:w-1/2 flex justify-center items-center">
