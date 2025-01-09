@@ -17,13 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br" className="w-full h-full">
-      <body
-        className={`${lora.className} bg-[#f0f0f0] text-black w-full h-full`}
-      >
+    <html lang="pt-br" className="w-full h-screen">
+     <body className={`${lora.className} bg-[#f0f0f0] text-black w-full h-full flex flex-col`}>
         <NavBar />
-        {children}
-        <footer className="w-full relative bottom-0">
+        <main className="flex-grow">{children}</main>
+        <footer className="w-full relative bottom-0 pt-20">
           <Footer />
         </footer>
       </body>
