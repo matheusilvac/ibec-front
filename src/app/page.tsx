@@ -42,7 +42,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="w-full flex flex-col justify-center items-center h-full mb-10 px-5">
+      <div className="w-full flex flex-col justify-center items-center h-full mb-10 px-5 md:px-20">
         <div className="w-full flex flex-col justify-center items-center gap-8 mb-5">
           <h1 className="text-3xl font-semibold">Proposta</h1>
           <p className="w-full flex justify-center items-center sm:w-2/3 text-left text-xl">
@@ -75,7 +75,7 @@ export default function Home() {
             <h1 className="text-3xl font-semibold">Propósito</h1>
             <p className="w-full flex justify-center items-center sm:w-2/3 text-left text-xl">
               Após quase quatro anos de planejamento e preparo, o projeto
-              finalmente foi concretizado. Em setembro de 2023, o IBEC foi
+              finalmente foi concretizado. Em setembro de 2024, o IBEC foi
               oficialmente iniciada, marcando o começo de uma jornada que busca
               impactar vidas de maneira profunda. A proposta do IBEC é,
               portanto, ser um verdadeiro instrumento de transformação, formando

@@ -9,7 +9,7 @@ export const Footer = () => {
             className=" h-16 object-fill mb-4"
           ></img>
           <p className="text-sm md:text-md">
-            “Se és teólogo, tu rezarás de verdade, e se tu rezas de verdade, tu
+            “Se és teólogo, tu orarás de verdade, e se tu oras de verdade, tu
             serás teólogo”
             <br />- Evágrio
           </p>

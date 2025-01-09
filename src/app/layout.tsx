@@ -9,6 +9,9 @@ const lora = Lora({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "IBEC",
   description: "Instituto Biblíco de Educação Cristã",
+  icons: {
+    icon: "/arvore-ibec.png", // Ou pode ser .png ou outro formato
+  },
 };
 
 export default function RootLayout({
@@ -18,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br" className="w-full h-screen">
-     <body className={`${lora.className} bg-[#f0f0f0] text-black w-full h-full flex flex-col`}>
+     <body className={`${lora.className} bg-[#f0f0f0] text-[#0A1A2D] w-full h-full flex flex-col`}>
         <NavBar />
         <main className="flex-grow">{children}</main>
         <footer className="w-full relative bottom-0 pt-20">
