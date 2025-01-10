@@ -14,11 +14,11 @@ export const NavBar = () => {
           </Link>
         </div>
         <div className=" h-full flex justify-center items-center">
-          <ul className="w-full flex justify-center gap-2 md:gap-5 uppercase text-sm md:text-md">
-            <Link href="/" className="hover:opacity-75 duration-500 transition-all bg-[#e6a44e] px-2 py-1 rounded-sm">inicio</Link>
-            <Link href="/" className="hover:opacity-75 duration-500 transition-all bg-[#e6a44e] px-2 py-1 rounded-sm">curso</Link>
-            <Link href="/" className="hover:opacity-75 duration-500 transition-all bg-[#e6a44e] px-2 py-1 rounded-sm">sobre</Link>
-            <Link href="/" className="hover:opacity-75 duration-500 transition-all bg-[#e6a44e] px-2 py-1 rounded-sm">livraria</Link>
+          <ul className="w-full flex justify-center gap-2 md:gap-5 uppercase text-xs">
+            <Link href="/" className="hover:bg-[#e6a44e] duration-500 transition-all border-[3px] border-[#e6a44e] p-2 w-16 h-16 rounded-full flex justify-center items-center">inicio</Link>
+            <Link href="/" className="hover:bg-[#e6a44e] duration-500 transition-all border-[3px] border-[#e6a44e] p-2 w-16 h-16 rounded-full flex justify-center items-center">curso</Link>
+            <Link href="/" className="hover:bg-[#e6a44e] duration-500 transition-all border-[3px] border-[#e6a44e] p-2 w-16 h-16 rounded-full flex justify-center items-center">sobre</Link>
+            <Link href="/" className="hover:bg-[#e6a44e] duration-500 transition-all border-[3px] border-[#e6a44e] p-2 w-16 h-16 rounded-full flex justify-center items-center">livraria</Link>
           </ul>
         </div>
       </div>
