@@ -1,12 +1,7 @@
 import { ElementoWidget } from "@/components/elementoWidget";
 import { FaBible, FaBook, FaChurch, FaCross } from "react-icons/fa";
+import { IoLibrary } from "react-icons/io5";
 import { PiCertificateFill } from "react-icons/pi";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["100", "300", "400", "700"], // Defina os pesos que você precisa
-});
 
 export default function Home() {
   return (
@@ -15,7 +10,7 @@ export default function Home() {
         <div className="w-full h-full flex flex-col sm:flex-row justify-center md:justify-around items-center mb-10 sm:mb-14 px-0 sm:px-5">
           <div className="w-full h-auto sm:w-1/4 justify-center items-center flex text-start mb-5 sm:mb-0">
             <img
-              src="/logo3-ibec.png"
+              src="/ibec-vertical-bg-azul.png"
               alt=""
               className="w-full flex h-full object-contain fill-transparent"
             />
@@ -102,7 +97,7 @@ export default function Home() {
             </section>
             <section className="max-w-[200px] h-auto flex justify-around items-center gap-3">
               <div className="w-20 h-20 justify-center rounded-xl bg-[#e6a44e] flex shadow-md shadow-black/25">
-                <FaBook className="w-2/3 h-auto" />
+                <IoLibrary className="w-2/3 h-auto" />
               </div>
               <p className="text-white flex text-left w-24 text-sm">
                 Livraria completa

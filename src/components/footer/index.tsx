@@ -1,3 +1,10 @@
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "700"], // Defina os pesos que você precisa
+});
+
 export const Footer = () => {
   return (
     <footer className="bg-[#0A1A2D] text-white">
@@ -8,7 +15,7 @@ export const Footer = () => {
             alt="Logo Entrada Certa"
             className=" h-16 object-fill mb-4"
           ></img>
-          <p className="text-sm md:text-md">
+          <p className={`text-sm md:text-md ${roboto.className}`}>
             “Se és teólogo, tu orarás de verdade, e se tu oras de verdade, tu
             serás teólogo”
             <br />- Evágrio
@@ -16,7 +23,7 @@ export const Footer = () => {
         </div>
         <div className="mb-8 md:mb-0">
           <h2 className="font-semibold uppercase mb-4 text-2xl">Contribua</h2>
-          <ul className="text-sm md:text-md">
+          <ul className={`text-sm md:text-md  ${roboto.className}`}>
             <li className="mb-2">
               Banco XXXX <br /> Agência: XXXX <br />
               C/C: XXXXX <br />
@@ -27,7 +34,7 @@ export const Footer = () => {
         </div>
         <div className="mb-8 md:mb-0">
           <h2 className=" font-semibold uppercase mb-4 text-2xl">Contato</h2>
-          <ul className="text-sm md:text-md">
+          <ul className={`text-sm md:text-md  ${roboto.className}`}>
             <li className="mb-2">
               Estrada dos Orquidófilos, 386, Embu das Artes, São Paulo.
               <br />
