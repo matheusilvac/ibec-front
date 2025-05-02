@@ -8,7 +8,7 @@ export const SideBarIcon = () => {
     const {toggleSideBar, sideOpen} = HandleSideBar()
     return(
         <>
-        <div className="flex justify-center items-center cursor-pointer text-4xl text-[#ffcc89]">
+        <div className="flex justify-center items-center cursor-pointer text-4xl text-white">
         <FiMenu  onClick={toggleSideBar}/>
         </div>
         {sideOpen && <div className="duration-3000"><SideBar /></div>} 

@@ -4,6 +4,8 @@ import { GoHomeFill } from "react-icons/go";
 import { IoLibrary } from "react-icons/io5";
 
 import { Roboto } from "next/font/google";
+import Link from "next/link";
+import { PiStudentBold } from "react-icons/pi";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -30,16 +32,16 @@ export const SideBar = () => {
         </div>
         <div className="w-full flex items-center gap-3 text-white py-2 px-3 hover:bg-[#1B2F45] transition-all duration-300 rounded-md cursor-pointer">
           <div className="text-3xl">
-            <GoHomeFill />
-          </div>
-          <p className="text-lg font-medium flex">Sobre</p>
-        </div>
-        <div className="w-full flex items-center gap-3 text-white py-2 px-3 hover:bg-[#1B2F45] transition-all duration-300 rounded-md cursor-pointer">
-          <div className="text-3xl">
             <FaBook  />
           </div>
           <p className="text-lg font-medium flex">Livraria</p>
         </div>
+        <button onClick={toggleSideBar} className="w-full flex items-center gap-3 text-white py-2 px-3 hover:bg-[#1B2F45] transition-all duration-300 rounded-md cursor-pointer">
+          <div className="text-3xl">
+            <PiStudentBold  />
+          </div>
+          <Link href="/portal-aluno" className="text-lg font-medium flex">Portal do aluno</Link>
+        </button>
       </div>
     </div>
   );

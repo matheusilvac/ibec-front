@@ -15,11 +15,12 @@ export const NavBar = () => {
           </Link>
         </div>
         <div className="hidden h-full sm:flex justify-center items-center">
-          <ul className="w-full flex justify-center gap-2 md:gap-5 uppercase text-xs">
-            <Link href="/" className="hover:bg-[#e6a44e] duration-500 transition-all border-[3px] border-[#e6a44e] p-2 w-16 h-16 rounded-full flex justify-center items-center">inicio</Link>
-            <Link href="/" className="hover:bg-[#e6a44e] duration-500 transition-all border-[3px] border-[#e6a44e] p-2 w-16 h-16 rounded-full flex justify-center items-center">curso</Link>
-            <Link href="/" className="hover:bg-[#e6a44e] duration-500 transition-all border-[3px] border-[#e6a44e] p-2 w-16 h-16 rounded-full flex justify-center items-center">sobre</Link>
-            <Link href="/" className="hover:bg-[#e6a44e] duration-500 transition-all border-[3px] border-[#e6a44e] p-2 w-16 h-16 rounded-full flex justify-center items-center">livraria</Link>
+          <ul className="w-full flex justify-center gap-2 md:gap-5 uppercase text-sm">
+            <Link href="/" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">inicio</Link>
+            <Link href="/" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">curso</Link>
+            <Link href="/" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">sobre</Link>
+            <Link href="/" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">livraria</Link>
+            <Link href="/portal-aluno" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">Portal do aluno</Link>
           </ul>
         </div>
         <div className="flex sm:hidden pr-2">

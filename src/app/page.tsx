@@ -1,3 +1,4 @@
+'use client'
 import { ElementoWidget } from "@/components/elementoWidget";
 import { FaBible, FaBook, FaChurch, FaCross } from "react-icons/fa";
 import { IoLibrary } from "react-icons/io5";
@@ -5,7 +6,7 @@ import { PiCertificateFill } from "react-icons/pi";
 
 export default function Home() {
   return (
-    <div className="w-full h-full flex flex-col pt-28 sm:pt-40 pb-10 text-[#0A1A2D]">
+    <div className="w-full h-full flex flex-col pt-28 sm:pt-40 pb-20 text-[#0A1A2D]">
       <div className="w-full h-full flex flex-col justify-center items-center mb-5 sm:mb-20 px-5 md:px-10">
         <div className="w-full h-full flex flex-col sm:flex-row justify-center md:justify-around items-center mb-10 sm:mb-14 px-0 sm:px-5">
           <div className="w-full h-auto sm:w-1/4 justify-center items-center flex text-start mb-5 sm:mb-0">
