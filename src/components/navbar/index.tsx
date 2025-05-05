@@ -20,7 +20,7 @@ export const NavBar = () => {
             <Link href="/" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">curso</Link>
             <Link href="/" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">sobre</Link>
             <Link href="/" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">livraria</Link>
-            <Link href="/portal-aluno" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">Portal do aluno</Link>
+            <Link href="/login" className="hover:opacity-60 transition-all duration-300 flex justify-center items-center">Portal do aluno</Link>
           </ul>
         </div>
         <div className="flex sm:hidden pr-2">

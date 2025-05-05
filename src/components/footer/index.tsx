@@ -7,7 +7,7 @@ const roboto = Roboto({
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#0A1A2D] text-white">
+    <footer className="bg-[#0A1A2D] text-white ">
       <div className="mx-10 max-w-screen px-4 py-6 lg:py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
         <div className="mb-8 md:mb-0 gap-2">
           <img
