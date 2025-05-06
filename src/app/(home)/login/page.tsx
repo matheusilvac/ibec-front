@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 import {parseCookies, setCookie} from "nookies";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import {useUserStore} from "@/context/UserContext";
+import {useUserStore} from "@/context/userContext/UserContext";
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
   subsets: ["latin"],
@@ -42,7 +42,7 @@ export default function Login() {
       const token = res.data.token;
       if (token) {
         setCookie(null, "token", token, {
-          maxAge: 30 * 24 * 60 * 60,
+          maxAge: 2 * 24 * 60 * 60,
           path: "/",
           sameSite: "lax",
         });

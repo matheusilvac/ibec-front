@@ -1,5 +1,6 @@
 import { Lora } from "next/font/google";
 import "./globals.css";
+import {ProviderContext} from "@/context/provider";
 
 const lora = Lora({ subsets: ["latin"] });
 
@@ -15,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="pt-br" className="h-full w-full">
         <body className={`${lora.className} bg-[#f0f0f0] text-[#0A1A2D] h-full w-full`}>
-        {children}
+        <ProviderContext>
+            {children}
+        </ProviderContext>
         </body>
         </html>
     );

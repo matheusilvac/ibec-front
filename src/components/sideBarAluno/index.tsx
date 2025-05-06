@@ -1,5 +1,5 @@
 "use client"
-import {useUserStore} from "@/context/UserContext";
+import {useUserStore} from "@/context/userContext/UserContext";
 import {Home, Map, BookOpen, Send, PanelLeftClose} from "lucide-react"
 import {useEffect} from "react";
 import {parseCookies} from "nookies";
@@ -11,7 +11,7 @@ export function AppSidebar() {
     const {user, clearUser, setUser} = useUserStore();
     const items =[
         {
-            title: "Conteudo",
+            title: "Conteúdo",
             url: "/portal-aluno",
             icon: Map,
         },
@@ -22,7 +22,7 @@ export function AppSidebar() {
         },
         {
             title: "Comunidade / Avisos",
-            url: "/comunidade-avisos",
+            url: "/portal-aluno/comunidade-avisos",
             icon: Send,
         }
 
