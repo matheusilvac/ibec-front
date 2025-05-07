@@ -42,7 +42,7 @@ export default function Login() {
       const token = res.data.token;
       if (token) {
         setCookie(null, "token", token, {
-          maxAge: 2 * 24 * 60 * 60,
+          maxAge: 2 * 60 * 60,
           path: "/",
           sameSite: "lax",
         });
