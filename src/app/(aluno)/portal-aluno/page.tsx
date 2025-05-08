@@ -20,7 +20,7 @@ export default function Dashboard() {
     handleApostilaApi();
     if (token && !user) {
       axios
-          .get("http://localhost:8081/api/auth", {
+          .get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth", {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => setUser(res.data))

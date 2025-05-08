@@ -36,7 +36,7 @@ export default function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8081/api/auth/login",
+        "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/login",
         payload
       );
       const token = res.data.token;
@@ -46,7 +46,7 @@ export default function Login() {
           path: "/",
           sameSite: "lax",
         });
-        const responseGet = await axios.get("http://localhost:8081/api/auth",
+        const responseGet = await axios.get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth",
             {
               headers: {
                 Authorization: `Bearer ${token}`

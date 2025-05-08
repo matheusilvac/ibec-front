@@ -15,7 +15,7 @@ export default function ComunidadeAvisos() {
     useEffect(() => {
         const { token } = parseCookies();
         if (token) {
-            axios.get("http://localhost:8081/api/post", {
+            axios.get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post", {
                 headers: {Authorization: `Bearer ${token}`}
             })
                 .then((response) => {

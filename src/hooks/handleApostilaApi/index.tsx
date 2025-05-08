@@ -9,7 +9,7 @@ export const useApostilaApi = () => {
 
     const handleApostilaApi = () => {
         setApostila(null);
-        axios.get("http://localhost:8081/api/admin/apostilas", {
+        axios.get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/apostilas", {
             headers: {Authorization: `Bearer ${token}`}
         })
             .then((response) => {
