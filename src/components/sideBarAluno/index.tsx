@@ -46,7 +46,7 @@ export function AppSidebar() {
         const { token } = parseCookies();
         if (token && !user) {
             axios
-                .get("http://localhost:8081/api/auth", {
+                .get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user", {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then((res) => setUser(res.data))
@@ -86,7 +86,7 @@ export function AppSidebar() {
                         <Accordion.ItemTrigger className="pb-2">
                             <Span flex="1">
                                 <HStack gap="2">
-                                    <Avatar.Root colorPalette="gray">
+                                    <Avatar.Root colorPalette="whiteAlpha">
                                         <Avatar.Fallback name={user?.nome} />
                                         <Avatar.Image />
                                     </Avatar.Root>
@@ -107,9 +107,9 @@ export function AppSidebar() {
                                           className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
                                         <div
                                             className="w-full flex justify-start items-center gap-5 ">
-                                <span className="flex items-center justify-center">
-                                   <item.icon/>
-                                </span>
+                                                <span className="flex items-center justify-center">
+                                                    <item.icon/>
+                                                    </span>
                                             <p>{item.title}</p>
                                         </div>
                                     </Link>

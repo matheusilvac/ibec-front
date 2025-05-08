@@ -27,7 +27,7 @@ export default function RootLayout({
         <div className={`${roboto.className} flex h-screen w-screen bg-[#f0f0f0] text-[#0A1A2D]`}>
             <ProviderContext>
                 <AppSidebar />
-                <main className="flex-grow overflow-auto">{children}</main>
+                <main className="flex-grow overflow-auto p-10">{children}</main>
             </ProviderContext>
         </div>
 

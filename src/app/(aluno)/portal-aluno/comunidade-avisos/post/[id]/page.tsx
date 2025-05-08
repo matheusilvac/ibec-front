@@ -1,16 +1,27 @@
-import {Avatar, Button, HStack, Input, Menu, Portal, Stack, Text} from "@chakra-ui/react";
+"use client"
 import {usePost} from "@/context/PostContext";
-import {Bookmark, CornerUpLeft, Forward, Heart, Maximize2, MessageCircle, Send, Trash} from "lucide-react";
-import {useUserStore} from "@/context/userContext/UserContext";
+import {useEffect, useState} from "react";
+import {parseCookies} from "nookies";
 import axios from "axios";
-import {useState} from "react";
-import { formatDistanceToNow } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+import {Avatar, HStack, Menu, Portal, Stack, Text} from "@chakra-ui/react";
+import {formatDistanceToNow} from "date-fns";
+import {ptBR} from "date-fns/locale";
+import {Bookmark, CornerUpLeft, Heart, Maximize2, MessageCircle, Send, Trash} from "lucide-react";
 import Link from "next/link";
+import {useUserStore} from "@/context/userContext/UserContext";
+import {PostProps} from "@/types/PostProps";
 
-export const CardPost = () => {
-    const {post} = usePost();
-    const {user} = useUserStore();
+type PostPageProps = {
+    params: {
+        id: number;
+    };
+};
+
+
+export default function PostPage({params}: PostPageProps) {
+    const id = params.id;
+    const [post, setPost] = useState<PostProps>();
+    const { user } = useUserStore()
     const [formData, setFormData] = useState({
         mensagem: "",
     });
@@ -40,33 +51,45 @@ export const CardPost = () => {
         setFormData((prevData) => ({ ...prevData, [key]: value }));
     };
 
+    useEffect(() => {
+        const {token} = parseCookies();
+
+        if (!token) return;
+
+        axios.get(`https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post/${id}`, {
+            headers: {Authorization: `Bearer ${token}`}
+        })
+            .then((response) => {
+                setPost(response.data)
+            })
+            .catch((error) => {
+                console.error("Erro durante a requisição:", error);
+            });
+    },);
+
     return (
-        <>
-            {post?.map((post) => (
+        <div className="w-full flex justify-center items-center">
                 <div
-                    key={post.id}
+                    key={post?.id}
                     className="w-full grid gap-3 bg-white rounded-lg px-4 lg:px-7 py-5"
                 >
                     <div className="flex gap-2 lg:gap-3 items-start justify-between w-full">
                         <HStack gap="2">
                             <Avatar.Root colorPalette="blackAlpha">
-                                <Avatar.Fallback name={post.autor.nome} />
+                                <Avatar.Fallback name={post?.autor.nome} />
                                 <Avatar.Image />
                             </Avatar.Root>
                             <Stack gap="0">
-                                <Text fontWeight="bold">{post.autor.nome}</Text>
+                                <Text fontWeight="bold">{post?.autor.nome}</Text>
                                 <Text className="text-gray-400" textStyle="xs">
-                                    {post.autor.email}
+                                    {post?.autor.email}
                                 </Text>
                             </Stack>
                         </HStack>
                         <div className="flex gap-3 items-center">
                             <Text className="text-gray-400" fontWeight="medium">
-                                {formatDistanceToNow(new Date(post.dataPost), { addSuffix: true, locale: ptBR})}
+                                {formatDistanceToNow(new Date(post?.dataPost ? post.dataPost : 0), { addSuffix: true, locale: ptBR})}
                             </Text>
-                            <Link href={`/portal-aluno/comunidade-avisos/post/${post.id}`} className="text-sm">
-                                <Maximize2 size={18}/>
-                            </Link>
                             <Menu.Root>
                                 <Menu.Trigger asChild>
                                     <button className="flex text-xl font-bold">
@@ -96,10 +119,10 @@ export const CardPost = () => {
                     </div>
 
                     <div className="w-full flex flex-col gap-2 py-3 text-sidebar-accent text-ellipsis !line-clamp-[4]">
-                        {post.titulo && (
-                            <h1 className="flex text-lg font-bold">{post.titulo}</h1>
+                        {post?.titulo && (
+                            <h1 className="flex text-lg font-bold">{post?.titulo}</h1>
                         )}
-                        <p>{post.mensagem}</p>
+                        <p>{post?.mensagem}</p>
                     </div>
 
                     <div className="w-full flex justify-between border-b border-gray-300 pb-5">
@@ -112,11 +135,9 @@ export const CardPost = () => {
                             </button>
                         </div>
                         <div className="flex justify-end">
-                            <Link href={`/portal-aluno/comunidade-avisos/post/${post.id}`}>
-                                <Text className="text-gray-900 hover:border-b border-black" fontWeight="medium">
-                                    {post.comentarios?.length || 0} Comentários
+                                <Text className="text-gray-400" fontWeight="medium">
+                                    {post?.comentarios?.length || 0} Comentários
                                 </Text>
-                            </Link>
                         </div>
                     </div>
                     <div className="w-full flex justify-start items-center gap-3 py-3">
@@ -125,11 +146,11 @@ export const CardPost = () => {
                             <Avatar.Image />
                         </Avatar.Root>
                         <input placeholder="Escreva um comentário..." className="w-full flex py-2 px-4 rounded-xl border border-gray-300 outline-none bg-gray-100" onChange={(e) => handleInputChange("mensagem", e.target.value)}/>
-                        <button onClick={() => handleClickButton(post.id)}>
+                        <button onClick={() => handleClickButton(post?.id)}>
                             <Send />
                         </button>
                     </div>
-                    {post.comentarios?.slice(0,2).map((comentario) => (
+                    {post?.comentarios?.map((comentario) => (
                         <div key={comentario.id}>
                             <div className="flex gap-2 lg:gap-3 items-start justify-between w-full">
                                 <HStack gap="2">
@@ -162,8 +183,8 @@ export const CardPost = () => {
                             </div>
                         </div>
                     ))}
+
                 </div>
-            ))}
-        </>
+        </div>
     )
 }

@@ -3,6 +3,7 @@ import { SideProvider } from "../sideBarContext";
 import { Provider } from "@/components/ui/provider"
 import {ApostilaProvider} from "@/context/ApostilaContext/ApostilasContext";
 import {PostProvider} from "@/context/PostContext";
+import {NotaProvider} from "@/context/NotasContext";
 
 type ProviderProps = {
   children: ReactNode;
@@ -10,14 +11,16 @@ type ProviderProps = {
 
 export const ProviderContext = ({ children }: ProviderProps) => {
   return (
-    <SideProvider>
-      <Provider>
-          <ApostilaProvider>
-              <PostProvider>
-              {children}
-              </PostProvider>
-          </ApostilaProvider>
-      </Provider>
-    </SideProvider>
+      <SideProvider>
+          <Provider>
+              <ApostilaProvider>
+                  <PostProvider>
+                      <NotaProvider>
+                          {children}
+                      </NotaProvider>
+                  </PostProvider>
+              </ApostilaProvider>
+          </Provider>
+      </SideProvider>
   )
 };

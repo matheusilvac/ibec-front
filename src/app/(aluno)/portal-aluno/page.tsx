@@ -20,7 +20,7 @@ export default function Dashboard() {
     handleApostilaApi();
     if (token && !user) {
       axios
-          .get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth", {
+          .get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user", {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => setUser(res.data))
@@ -33,7 +33,7 @@ export default function Dashboard() {
 
   if (!user) {
     return (
-      <div className="w-full flex items-center h-full flex-col p-10 text-black">
+      <div className="w-full flex items-center h-full flex-col text-black">
           <HStack gap="5">
               <Skeleton height="5" variant="pulse"/>
               <Stack flex="1">
@@ -47,7 +47,7 @@ export default function Dashboard() {
   }
 
   return (
-      <div className="w-full flex items-center h-full flex-col p-10">
+      <div className="w-full flex items-center h-full flex-col">
         <div className="w-full flex flex-col h-auto justify-start items-center">
           <div className="w-full flex h-auto flex-col gap-5 border-b border-gray-300">
             <h1 className="text-5xl font-bold">Portal do aluno</h1>

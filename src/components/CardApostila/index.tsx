@@ -4,8 +4,6 @@ import Link from "next/link";
 export const CardApostila = () => {
     const { apostila } = useApostila();
 
-
-
     return (
         <>
             {apostila?.map((apostila) => (

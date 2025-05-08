@@ -15,7 +15,7 @@ const roboto = Roboto({
 
 export default function Login() {
   const router = useRouter();
-  const {setUser} = useUserStore();
+  const {user, setUser} = useUserStore();
   const [formData, setFormData] = useState({
     email: "",
     senha: "",
@@ -23,7 +23,7 @@ export default function Login() {
 
   useEffect(() => {
     const {token} = parseCookies();
-    if (token) {
+    if (token && user) {
       router.push("/portal-aluno");
     }
   });
@@ -46,7 +46,7 @@ export default function Login() {
           path: "/",
           sameSite: "lax",
         });
-        const responseGet = await axios.get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth",
+        const responseGet = await axios.get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user",
             {
               headers: {
                 Authorization: `Bearer ${token}`
