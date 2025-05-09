@@ -1,6 +1,6 @@
 "use client"
 import {useUserStore} from "@/context/userContext/UserContext";
-import {Map, BookOpen, Send, PanelLeftClose, User, LogOut} from "lucide-react"
+import {Map, BookOpen, Send, PanelLeftClose, User, LogOut, MegaphoneOff, NotebookPen} from "lucide-react"
 import {useEffect} from "react";
 import {parseCookies} from "nookies";
 import axios from "axios";
@@ -8,25 +8,39 @@ import Link from "next/link";
 import {Accordion, Avatar, HStack, Span, Stack, Text} from "@chakra-ui/react";
 
 export function AppSidebar() {
-    const {user, clearUser, setUser} = useUserStore();
-    const items =[
+    const {user, setUser} = useUserStore();
+    const items = [
         {
             title: "Conteúdo",
             url: "/portal-aluno",
             icon: Map,
+            roles: ["ALUNO", "PROFESSOR", "ADMIN"]
         },
         {
             title: "Boletim",
             url: "/portal-aluno/boletim",
             icon: BookOpen,
+            roles: ["ALUNO"]
         },
         {
             title: "Comunidade / Avisos",
             url: "/portal-aluno/comunidade-avisos",
             icon: Send,
+            roles: ["ALUNO", "PROFESSOR", "ADMIN"]
+        },
+        {
+            title: "Faltas",
+            url: "/portal-aluno/faltas",
+            icon: MegaphoneOff,
+            roles: ["PROFESSOR", "ADMIN"]
+        },
+        {
+            title: "Lançar notas e provas",
+            url: "/portal-aluno/notas-provas",
+            icon: NotebookPen,
+            roles: ["PROFESSOR", "ADMIN"]
         }
-
-    ]
+    ];
 
     const itemsPerfil = [
         {
@@ -39,7 +53,6 @@ export function AppSidebar() {
             url: "/portal-aluno/meu-perfil",
             icon: LogOut,
         },
-
     ]
 
     useEffect(() => {
@@ -63,20 +76,20 @@ export function AppSidebar() {
             <Link href="/"><img src="/ibec-vertical-bg-azul.png" className="w-auto flex justify-center p-3"/> </Link>
             <nav className="mt-5 mx-4 overflow-y-auto">
                 <ul className="flex flex-col items-start gap-2">
-                    {items.map((item) => (
-                        <li className="w-full" key={item.title}>
-                            <Link href={item.url}
-                                  className="flex items-center gap-2 py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
-                                <div
-                                    className="w-full flex justify-start items-center gap-5 ">
-                                <span className="flex items-center justify-center">
-                                   <item.icon/>
-                                </span>
-                                    <p>{item.title}</p>
-                                </div>
-                            </Link>
-                        </li>
-
+                    {user?.role && items
+                        .filter((item) => item.roles.includes(user?.role))
+                        .map((item) => (
+                            <li className="w-full" key={item.title}>
+                                <Link href={item.url}
+                                      className="flex items-center gap-2 py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
+                                    <div className="w-full flex justify-start items-center gap-5 ">
+                                        <span className="flex items-center justify-center">
+                                            <item.icon/>
+                                        </span>
+                                        <p>{item.title}</p>
+                                    </div>
+                                </Link>
+                            </li>
                     ))}
                 </ul>
             </nav>

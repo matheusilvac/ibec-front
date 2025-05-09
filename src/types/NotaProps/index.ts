@@ -3,4 +3,9 @@ export type NotaProps = {
     media: number;
     situacao: string
     faltas: number
+    notas: {
+        id: number;
+        nota: number;
+        nomeProva: string
+    }[]
 }

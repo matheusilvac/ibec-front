@@ -28,8 +28,6 @@ export default function Dashboard() {
     }
   }, [user, setUser]);
 
-  console.log(apostila)
-
 
   if (!user) {
     return (

@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import {Roboto} from "next/font/google";
 import {AppSidebar} from "@/components/sideBarAluno";
 import {ProviderContext} from "@/context/provider";
+import {SideBarPortalMobile} from "@/components/sideBarPortalMobile";
 
 
 
@@ -24,10 +25,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className={`${roboto.className} flex h-screen w-screen bg-[#f0f0f0] text-[#0A1A2D]`}>
+        <div className={`${roboto.className} flex flex-col lg:flex-row  h-screen w-screen bg-[#f0f0f0] text-[#0A1A2D]`}>
             <ProviderContext>
-                <AppSidebar />
+                    <AppSidebar />
                 <main className="flex-grow overflow-auto p-10">{children}</main>
+                <div className="block lg:hidden">
+                    <SideBarPortalMobile />
+                </div>
             </ProviderContext>
         </div>
 

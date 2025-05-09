@@ -7,10 +7,11 @@ import {usePost} from "@/context/PostContext";
 import {CardPost} from "@/components/CardPost";
 import {Avatar, CloseButton, Dialog, Portal} from "@chakra-ui/react";
 import {Send} from "lucide-react";
+import {Loading} from "@/components/loading";
 
 export default function ComunidadeAvisos() {
     const {user} = useUserStore();
-    const {setPost} = usePost();
+    const {post, setPost} = usePost();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [formData, setFormData] = useState({
         titulo: "",
@@ -123,7 +124,7 @@ export default function ComunidadeAvisos() {
                     <Send/>
                 </button>
             </div>
-            <CardPost/>
+            {post  ?  (<CardPost/>) : (<Loading/>)}
         </div>
     )
 }
