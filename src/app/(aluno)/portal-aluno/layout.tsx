@@ -3,6 +3,7 @@ import {Roboto} from "next/font/google";
 import {AppSidebar} from "@/components/sideBarAluno";
 import {ProviderContext} from "@/context/provider";
 import {SideBarPortalMobile} from "@/components/sideBarPortalMobile";
+import { Toaster } from "@/components/ui/toaster";
 
 
 
@@ -29,6 +30,7 @@ export default function RootLayout({
             <ProviderContext>
                     <AppSidebar />
                 <main className="flex-grow overflow-auto p-10">{children}</main>
+                <Toaster />
                 <div className="block lg:hidden">
                     <SideBarPortalMobile />
                 </div>

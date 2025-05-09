@@ -71,7 +71,7 @@ export default function Login() {
     <div
       className={`${roboto.className} w-full h-full flex flex-col justify-center items-center text-white pt-28 pb-10 px-10`}
     >
-      <div className="w-full md:w-2/4 lg:w-1/4 flex h-auto items-center flex-col justify-center gap-5 bg-white rounded-3xl mt-10 p-10 backdrop-blur-lg shadow-md text-[#071322]">
+      <div className="w-full md:w-3/4 lg:w-2/4 xl:w-1/4 flex h-auto items-center flex-col justify-center gap-5 bg-white rounded-3xl mt-10 p-10 backdrop-blur-lg shadow-md text-[#071322]">
         <h1 className="w-full flex justify-center text-3xl font-bold">Login</h1>
         <Stack gap="5" align="flex-start" w="full">
           <Field.Root required>
@@ -106,7 +106,7 @@ export default function Login() {
             Acessar
           </button>
           <div className="w-full flex justify-center items-center">
-            <Link href="/public" className="flex border-b-2 border-[#071322]">
+            <Link href="/" className="flex border-b-2 border-[#071322]">
               Esqueci minha senha
             </Link>
           </div>

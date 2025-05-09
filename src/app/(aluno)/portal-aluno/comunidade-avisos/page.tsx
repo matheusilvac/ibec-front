@@ -8,6 +8,7 @@ import {CardPost} from "@/components/CardPost";
 import {Avatar, CloseButton, Dialog, Portal} from "@chakra-ui/react";
 import {Send} from "lucide-react";
 import {Loading} from "@/components/loading";
+import {toaster} from "@/components/ui/toaster";
 
 export default function ComunidadeAvisos() {
     const {user} = useUserStore();
@@ -63,11 +64,28 @@ export default function ComunidadeAvisos() {
                     payload
                 )
                 setIsDialogOpen(false);
+                toaster.create({
+                    title: "Sucesso!",
+                    description: "Post criadas com sucesso",
+                    type: "success",
+                    meta: { closable: true },
+                })
             } catch (err) {
                 console.error("Erro ao fazer post:", err);
+                toaster.create({
+                    title: "Erro!",
+                    description: "Não foi possivel criar seu post",
+                    type: "error",
+                    meta: { closable: true },
+                })
             }
         } else {
-            console.log("diGITE UA MENSAGEM O PERUA")
+            toaster.create({
+                title: "Erro!",
+                description: "O campo mensagem esta vazio!",
+                type: "error",
+                meta: { closable: true },
+            })
         }
 
     };

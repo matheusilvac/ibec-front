@@ -40,7 +40,7 @@ export const SideBar = () => {
           <div className="text-3xl">
             <PiStudentBold  />
           </div>
-          <Link href="/portal-aluno" className="text-lg font-medium flex">Portal do aluno</Link>
+          <Link href="/login" className="text-lg font-medium flex">Portal do aluno</Link>
         </button>
       </div>
     </div>
