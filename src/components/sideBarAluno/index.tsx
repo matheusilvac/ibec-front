@@ -8,7 +8,7 @@ import Link from "next/link";
 import {Accordion, Avatar, HStack, Span, Stack, Text} from "@chakra-ui/react";
 
 export function AppSidebar() {
-    const {user, setUser} = useUserStore();
+    const {user, setUser, clearUser} = useUserStore();
     const items = [
         {
             title: "Conteúdo",
@@ -50,7 +50,6 @@ export function AppSidebar() {
         },
         {
             title: "Sair",
-            url: "/portal-aluno/meu-perfil",
             icon: LogOut,
         },
     ]
@@ -116,8 +115,8 @@ export function AppSidebar() {
                         <Accordion.ItemContent>
                             {itemsPerfil.map((item) => (
                                 <Accordion.ItemBody className="w-full p-1" key={item.title}>
-                                    <Link href={item.url}
-                                          className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
+                                    {item.url ? (<Link href={item?.url}
+                                                       className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
                                         <div
                                             className="w-full flex justify-start items-center gap-5 ">
                                                 <span className="flex items-center justify-center">
@@ -125,7 +124,19 @@ export function AppSidebar() {
                                                     </span>
                                             <p>{item.title}</p>
                                         </div>
-                                    </Link>
+                                    </Link>) : (
+                                        <button onClick={() => clearUser()}
+                                              className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
+                                            <div
+                                                className="w-full flex justify-start items-center gap-5 ">
+                                                <span className="flex items-center justify-center">
+                                                    <item.icon/>
+                                                    </span>
+                                                <p>{item.title}</p>
+                                            </div>
+                                        </button>
+                                    )}
+
                                 </Accordion.ItemBody>
 
                             ))}

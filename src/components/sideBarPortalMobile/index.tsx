@@ -47,14 +47,13 @@ const itemsPerfil = [
     },
     {
         title: "Sair",
-        url: "/portal-aluno/meu-perfil",
         icon: LogOut,
     },
 
 ]
 
 export const SideBarPortalMobile= () => {
-    const { user } = useUserStore()
+    const { user, clearUser } = useUserStore()
 
     return(
         <footer className="w-full flex mt-auto z-50 relative flex-wrap items-center justify-center gap-5 bg-white p-2">
@@ -79,12 +78,29 @@ export const SideBarPortalMobile= () => {
                     <Menu.Positioner >
                         <Menu.Content className="bg-white text-black gap-2 p-1">
                             {itemsPerfil.map((item) => (
-                                <button className="w-full flex justify-start gap-2 items-center border-none outline-none hover:bg-gray-200/80 pb-1" key={item.title}>
-                                    <div className="flex pt-[2px]">
-                                       <item.icon/>
-                                    </div>
-                                    <p className="flex text-md">{item.title}</p>
-                                </button>
+                                <>
+                                    {item.url ? (<Link href={item?.url}
+                                                       className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
+                                        <div
+                                            className="w-full flex justify-start items-center gap-5 ">
+                                                <span className="flex items-center justify-center">
+                                                    <item.icon/>
+                                                    </span>
+                                            <p>{item.title}</p>
+                                        </div>
+                                    </Link>) : (
+                                        <button onClick={() => clearUser()}
+                                                className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
+                                            <div
+                                                className="w-full flex justify-start items-center gap-5 ">
+                                                <span className="flex items-center justify-center">
+                                                    <item.icon/>
+                                                    </span>
+                                                <p>{item.title}</p>
+                                            </div>
+                                        </button>
+                                    )}
+                                </>
                             ))}
                         </Menu.Content>
                     </Menu.Positioner>

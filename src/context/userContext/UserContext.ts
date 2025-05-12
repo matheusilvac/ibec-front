@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import {persist} from "zustand/middleware";
 import {UsuarioProps} from "@/types/usuarioProps";
+import {destroyCookie} from "nookies";
 
 
 interface UserStore {
@@ -14,7 +15,10 @@ export const useUserStore = create<UserStore>()(
         (set) => ({
             user: null,
             setUser: (user) => set({ user }),
-            clearUser: () => set({ user: null }),
+            clearUser: () => {
+                set({ user: null })
+                destroyCookie(null, 'token')
+            },
         }),
         {
             name: 'user-storage',
