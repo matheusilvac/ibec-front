@@ -144,7 +144,6 @@ export default function LancarNotasProvasPage() {
                         <BookPlus size={28}/>
                         Criar prova
                     </Tabs.Trigger>
-
                     <Tabs.Indicator rounded="l2" bg="gray.100" className={"shadow-none"}/>
                 </Tabs.List>
                 <Tabs.Content value="modulos">
