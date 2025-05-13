@@ -1,9 +1,10 @@
 "use client"
-import {Map, BookOpen, Send, AlignJustify, User, LogOut, MegaphoneOff, NotebookPen} from "lucide-react"
+import {Map, BookOpen, Send, AlignJustify, User, LogOut, MegaphoneOff, NotebookPen, BookPlus} from "lucide-react"
 import Link from "next/link";
 import {Portal} from "@chakra-ui/react";
 import { Menu } from "@chakra-ui/react";
 import {useUserStore} from "@/context/userContext/UserContext";
+import {HandleUserFunc} from "@/hooks/handleUserFunc";
 
 const items = [
     {
@@ -31,8 +32,14 @@ const items = [
         roles: ["PROFESSOR", "ADMIN"]
     },
     {
-        title: "Lançar notas e provas",
-        url: "/portal-aluno/notas-provas",
+        title: "Criar provas",
+        url: "/portal-aluno/criar-provas",
+        icon: BookPlus,
+        roles: ["PROFESSOR", "ADMIN"]
+    },
+    {
+        title: "Lançar notas ",
+        url: "/portal-aluno/lancar-nota",
         icon: NotebookPen,
         roles: ["PROFESSOR", "ADMIN"]
     }
@@ -54,9 +61,10 @@ const itemsPerfil = [
 
 export const SideBarPortalMobile= () => {
     const { user, clearUser } = useUserStore()
+    const { handleLogout } = HandleUserFunc();
 
     return(
-        <footer className="w-full flex mt-auto z-50 relative flex-wrap items-center justify-center gap-5 bg-white p-2">
+        <footer className="w-full flex mt-auto z-50 absolute flex-wrap items-center justify-center gap-5 bg-white p-2 overflow-y-auto">
             {user?.role && items
                 .filter((item) => item.roles.includes(user?.role))
                 .map((item) => (
@@ -89,7 +97,7 @@ export const SideBarPortalMobile= () => {
                                             <p>{item.title}</p>
                                         </div>
                                     </Link>) : (
-                                        <button onClick={() => clearUser()}
+                                        <button onClick={handleLogout}
                                                 className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
                                             <div
                                                 className="w-full flex justify-start items-center gap-5 ">

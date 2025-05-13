@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import {persist} from "zustand/middleware";
 import {UsuarioProps} from "@/types/usuarioProps";
 import {destroyCookie} from "nookies";
-
+import {useRouter} from "next/navigation";
 
 interface UserStore {
     user: UsuarioProps | null;

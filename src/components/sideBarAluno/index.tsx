@@ -1,14 +1,16 @@
 "use client"
 import {useUserStore} from "@/context/userContext/UserContext";
-import {Map, BookOpen, Send, PanelLeftClose, User, LogOut, MegaphoneOff, NotebookPen} from "lucide-react"
+import {Map, BookOpen, Send, PanelLeftClose, User, LogOut, MegaphoneOff, NotebookPen, BookPlus} from "lucide-react"
 import {useEffect} from "react";
 import {parseCookies} from "nookies";
 import axios from "axios";
 import Link from "next/link";
 import {Accordion, Avatar, HStack, Span, Stack, Text} from "@chakra-ui/react";
+import {HandleUserFunc} from "@/hooks/handleUserFunc";
 
 export function AppSidebar() {
     const {user, setUser, clearUser} = useUserStore();
+    const { handleLogout } = HandleUserFunc();
     const items = [
         {
             title: "Conteúdo",
@@ -35,8 +37,14 @@ export function AppSidebar() {
             roles: ["PROFESSOR", "ADMIN"]
         },
         {
-            title: "Lançar notas e provas",
-            url: "/portal-aluno/notas-provas",
+            title: "Criar provas",
+            url: "/portal-aluno/criar-provas",
+            icon: BookPlus,
+            roles: ["PROFESSOR", "ADMIN"]
+        },
+        {
+            title: "Lançar notas ",
+            url: "/portal-aluno/lancar-nota",
             icon: NotebookPen,
             roles: ["PROFESSOR", "ADMIN"]
         }
@@ -125,7 +133,7 @@ export function AppSidebar() {
                                             <p>{item.title}</p>
                                         </div>
                                     </Link>) : (
-                                        <button onClick={() => clearUser()}
+                                        <button onClick={handleLogout}
                                               className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
                                             <div
                                                 className="w-full flex justify-start items-center gap-5 ">
