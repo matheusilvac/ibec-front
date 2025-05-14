@@ -84,9 +84,7 @@ export default function LancarNotasProvasPage() {
     const [idApostila, setIdApostila] = useState<number | null>()
     const [valueNome, setValueNome] = useState<string[]>([])
     const [valueModulos, setValueModulos] = useState<string[]>([])
-
-    console.log("form nome", valueNome[0])
-    console.log("form modulos", valueModulos)
+    const [valueDate, setValueDate] = useState<string>("")
 
 
     const handleClickSetProva = () => {
@@ -96,7 +94,7 @@ export default function LancarNotasProvasPage() {
                 nome: valueNome[0],
                 modulos: valueModulos,
                 apostilaID: idApostila,
-                dataProva: "2025-05-15"
+                dataProva: valueDate
             }
             console.log("payload: ", payload)
             axios.post(`https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/prova`, payload, {
@@ -166,7 +164,7 @@ export default function LancarNotasProvasPage() {
                     </div>
                 </Tabs.Content>
                 <Tabs.Content value="prova">
-                    <Stack gap="4" align="center" maxW="lg" className="bg-white p-4 rounded-lg ">
+                    <Stack gap="4" align="start" maxW="lg" className="bg-white p-4 rounded-lg ">
                         <Select.Root collection={nomeProvas}
                                      size="md"
                                      multiple={false}
@@ -175,7 +173,7 @@ export default function LancarNotasProvasPage() {
                         >
                             <Select.HiddenSelect/>
                             <Select.Label fontWeight="medium">Nome da prova</Select.Label>
-                            <Select.Control>
+                            <Select.Control className="bg-[#f0f0f0] pl-2 rounded-lg border-gray-300">
                                 <Select.Trigger>
                                     <Select.ValueText placeholder="Selecione o nome da prova"/>
                                 </Select.Trigger>
@@ -205,7 +203,7 @@ export default function LancarNotasProvasPage() {
                         >
                             <Select.HiddenSelect/>
                             <Select.Label fontWeight="medium">Módulos da prova</Select.Label>
-                            <Select.Control>
+                            <Select.Control className="bg-[#f0f0f0] pl-2 rounded-lg border-gray-300">
                                 <Select.Trigger>
                                     <Select.ValueText placeholder="Selecione os módulos da prova"/>
                                 </Select.Trigger>
@@ -228,6 +226,10 @@ export default function LancarNotasProvasPage() {
                                 </Select.Positioner>
                             </Portal>
                         </Select.Root>
+
+                        <input type="date" value={valueDate}
+                               onChange={(e) => setValueDate(e.target.value)}
+                               className="bg-[#f0f0f0] text-black flex px-2 py-1 rounded-lg cursor-pointer outline-none border-gray-300 border"/>
 
                         <button onClick={handleClickSetProva} type="submit"
                                 className="px-3 py-2 bg-[#0A1A2D] text-white flex text-md rounded-md">Criar prova

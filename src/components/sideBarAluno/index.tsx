@@ -29,26 +29,57 @@ export function AppSidebar() {
             url: "/portal-aluno/comunidade-avisos",
             icon: Send,
             roles: ["ALUNO", "PROFESSOR", "ADMIN"]
+        }
+    ];
+
+    const groupedItems = [
+        {
+            title: "Provas",
+            icon: BookPlus,
+            roles: ["PROFESSOR", "ADMIN"],
+            children: [
+                {
+                    title: "Criar Provas",
+                    url: "/portal-aluno/criar-provas",
+                },
+                {
+                    title: "Editar Provas",
+                    url: "/portal-aluno/editar-provas",
+                },
+            ]
+        },
+        {
+            title: "Notas",
+            icon: NotebookPen,
+            roles: ["PROFESSOR", "ADMIN"],
+            children: [
+                {
+                    title: "Lançar notas",
+                    url: "/portal-aluno/lancar-nota",
+                },
+                {
+                    title: "Editar Provas",
+                    url: "/portal-aluno/editar-nota",
+                },
+            ]
         },
         {
             title: "Faltas",
-            url: "/portal-aluno/faltas",
             icon: MegaphoneOff,
-            roles: ["PROFESSOR", "ADMIN"]
-        },
-        {
-            title: "Criar provas",
-            url: "/portal-aluno/criar-provas",
-            icon: BookPlus,
-            roles: ["PROFESSOR", "ADMIN"]
-        },
-        {
-            title: "Lançar notas ",
-            url: "/portal-aluno/lancar-nota",
-            icon: NotebookPen,
-            roles: ["PROFESSOR", "ADMIN"]
+            roles: ["PROFESSOR", "ADMIN"],
+            children: [
+                {
+                    title: "Lançar faltas",
+                    url: "/portal-aluno/faltas",
+                },
+                {
+                    title: "Editar Provas",
+                    url: "/portal-aluno/editar-falta",
+                },
+            ]
         }
     ];
+
 
     const itemsPerfil = [
         {
@@ -98,6 +129,29 @@ export function AppSidebar() {
                                 </Link>
                             </li>
                     ))}
+                    {user?.role && groupedItems
+                        .filter((group) => group.roles.includes(user?.role))
+                        .map((group) => (
+                            <Accordion.Root  collapsible key={group.title} className="w-full">
+                                <Accordion.Item value={group.title}>
+                                    <Accordion.ItemTrigger className=" justify-between flex items-center gap-2 py-[0.6rem] px-3 w-full font-medium rounded-md  text-[#0A1A2D]">
+                                        <div className="flex gap-5">
+                                            <group.icon />
+                                            <span>{group.title}</span>
+                                        </div>
+                                        <Accordion.ItemIndicator />
+                                    </Accordion.ItemTrigger>
+                                    <Accordion.ItemContent>
+                                        {group.children.map((child) => (
+                                            <Link key={child.title} href={child.url}
+                                                  className="flex items-center gap-2 py-[0.5rem] pl-8 pr-3 w-full rounded-md text-3xs md:text-2xs transition-colors duration-200 hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
+                                                <span>{child.title}</span>
+                                            </Link>
+                                        ))}
+                                    </Accordion.ItemContent>
+                                </Accordion.Item>
+                            </Accordion.Root>
+                        ))}
                 </ul>
             </nav>
             <footer className="mt-auto  border-t border-gray-200 p-3">

@@ -18,8 +18,7 @@ const items = [
         url: "/portal-aluno/boletim",
         icon: BookOpen,
         roles: ["ALUNO"]
-    },
-    {
+    }, {
         title: "Comunidade / Avisos",
         url: "/portal-aluno/comunidade-avisos",
         icon: Send,
@@ -31,18 +30,6 @@ const items = [
         icon: MegaphoneOff,
         roles: ["PROFESSOR", "ADMIN"]
     },
-    {
-        title: "Criar provas",
-        url: "/portal-aluno/criar-provas",
-        icon: BookPlus,
-        roles: ["PROFESSOR", "ADMIN"]
-    },
-    {
-        title: "Lançar notas ",
-        url: "/portal-aluno/lancar-nota",
-        icon: NotebookPen,
-        roles: ["PROFESSOR", "ADMIN"]
-    }
 ];
 export default items;
 
@@ -56,15 +43,27 @@ const itemsPerfil = [
         title: "Sair",
         icon: LogOut,
     },
+    {
+        title: "Criar provas",
+        url: "/portal-aluno/criar-provas",
+        icon: BookPlus,
+        roles: ["PROFESSOR", "ADMIN"]
+    },
+    {
+        title: "Lançar notas ",
+        url: "/portal-aluno/lancar-nota",
+        icon: NotebookPen,
+        roles: ["PROFESSOR", "ADMIN"]
+    }
 
 ]
 
 export const SideBarPortalMobile= () => {
-    const { user, clearUser } = useUserStore()
+    const { user } = useUserStore()
     const { handleLogout } = HandleUserFunc();
 
     return(
-        <footer className="w-full flex mt-auto z-50 absolute flex-wrap items-center justify-center gap-5 bg-white p-2 overflow-y-auto">
+        <footer className="w-full flex bottom-0 mt-auto z-50 fixed flex-wrap items-center justify-center gap-5 bg-white p-2 overflow-y-auto">
             {user?.role && items
                 .filter((item) => item.roles.includes(user?.role))
                 .map((item) => (
