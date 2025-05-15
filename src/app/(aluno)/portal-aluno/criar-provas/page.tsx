@@ -226,11 +226,14 @@ export default function LancarNotasProvasPage() {
                                 </Select.Positioner>
                             </Portal>
                         </Select.Root>
+                        <div className="flex flex-col gap-2 w-full">
+                            <label className="font-medium flex text-sm">Data da prova</label>
 
-                        <input type="date" value={valueDate}
-                               onChange={(e) => setValueDate(e.target.value)}
-                               className="bg-[#f0f0f0] text-black flex px-2 py-1 rounded-lg cursor-pointer outline-none border-gray-300 border"/>
+                            <input type="date" value={valueDate}
+                                   onChange={(e) => setValueDate(e.target.value)}
+                                   className="bg-[#f0f0f0] text-black flex px-2 py-1 rounded-lg cursor-pointer outline-none border-gray-300 border"/>
 
+                        </div>
                         <button onClick={handleClickSetProva} type="submit"
                                 className="px-3 py-2 bg-[#0A1A2D] text-white flex text-md rounded-md">Criar prova
                         </button>

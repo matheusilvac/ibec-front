@@ -11,7 +11,7 @@ import {Loading} from "@/components/loading";
 import {useApostilaApi} from "@/hooks/handleApostilaApi";
 import {toaster} from "@/components/ui/toaster";
 
-export default function Faltas(){
+export default function Faltas() {
     const [value, setValue] = useState<string | null>("modulos")
     const {turma, setTurma} = useTurma()
     const [alunos, setAlunos] = useState<AlunosProps[]>([])
@@ -27,19 +27,19 @@ export default function Faltas(){
     useEffect(() => {
         const {token} = parseCookies();
         handleApostilaApi();
-            axios.get(`https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/turmas`, {
-                headers: {Authorization: `Bearer ${token}`}
+        axios.get(`https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/turmas`, {
+            headers: {Authorization: `Bearer ${token}`}
+        })
+            .then((response) => {
+                if (Array.isArray(response.data.content)) {
+                    setTurma(response.data.content);
+                } else {
+                    console.error("A propriedade content da resposta da API não é uma array:", response);
+                }
             })
-                .then((response) => {
-                    if (Array.isArray(response.data.content)) {
-                        setTurma(response.data.content);
-                    } else {
-                        console.error("A propriedade content da resposta da API não é uma array:", response);
-                    }
-                })
-                .catch((error) => {
-                    console.error("Erro durante a requisição:", error);
-                });
+            .catch((error) => {
+                console.error("Erro durante a requisição:", error);
+            });
     }, []);
 
     const handleClickSetTurma = (id: number) => {
@@ -53,7 +53,7 @@ export default function Faltas(){
                 } else {
                     console.error("A propriedade content da resposta da API não é uma array:", response);
                 }
-               setValue("alunos")
+                setValue("alunos")
             })
             .catch((error) => {
                 console.error("Erro durante a requisição:", error);
@@ -62,7 +62,7 @@ export default function Faltas(){
 
     const handleClickSetFalta = () => {
         const {token} = parseCookies();
-        if(selection.length > 0){
+        if (selection.length > 0) {
             const payload = {
                 alunoID: selection,
                 apostilaID: idApostila,
@@ -78,7 +78,7 @@ export default function Faltas(){
                         title: "Sucesso!",
                         description: "Faltas criadas com sucesso",
                         type: "success",
-                        meta: { closable: true },
+                        meta: {closable: true},
                     })
                 })
                 .catch((error) => {
@@ -86,7 +86,7 @@ export default function Faltas(){
                         title: "Erro!",
                         description: error.mensagem,
                         type: "error",
-                        meta: { closable: true },
+                        meta: {closable: true},
                     })
                 });
         } else {
@@ -94,16 +94,16 @@ export default function Faltas(){
                 title: "Erro!",
                 description: "Selecione pelo menos um aluno para criar uma falta",
                 type: "error",
-                meta: { closable: true },
+                meta: {closable: true},
             })
         }
     }
 
 
-
-    return(
+    return (
         <div className="w-full flex flex-col gap-10">
-            <Tabs.Root defaultValue="members" fitted variant="plain" p="1" value={value} onValueChange={(e) => setValue(e.value)}>
+            <Tabs.Root defaultValue="members" fitted variant="plain" p="1" value={value}
+                       onValueChange={(e) => setValue(e.value)}>
                 <Tabs.List bg="white" rounded="lg" p="2" className="gap-2">
                     <Tabs.Trigger value="modulos">
                         <GraduationCap size={28}/>
@@ -121,35 +121,41 @@ export default function Faltas(){
                     <Tabs.Indicator rounded="l2" bg="gray.100" className={"shadow-none"}/>
                 </Tabs.List>
                 <Tabs.Content value="modulos">
-                    <div className="w-full h-full flex flex-wrap justify-center items-center gap-8 mt-10 transition-all duration-500">
+                    <div
+                        className="w-full h-full flex flex-wrap justify-center items-center gap-8 mt-10 transition-all duration-500">
                         {apostila ? (
                             <>
-                            {apostila?.map((apostila) => (
-                                <button onClick={() => {
-                                    setIdApostila(apostila.id)
-                                    setValue("turma")
-                                }} key={apostila.id} className="w-[262px] flex flex-col items-center rounded-xl hover:shadow-xl shadow-black transition-all duration-300 cursor-pointer hover:scale-105">
-                                    <img src={apostila.imagem} className="w-full flex justify-center items-center h-full rounded-xl"/>
-                                </button>
-                            ))}
+                                {apostila?.map((apostila) => (
+                                    <button onClick={() => {
+                                        setIdApostila(apostila.id)
+                                        setValue("turma")
+                                    }} key={apostila.id}
+                                            className="w-[262px] flex flex-col items-center rounded-xl hover:shadow-xl shadow-black transition-all duration-300 cursor-pointer hover:scale-105">
+                                        <img src={apostila.imagem}
+                                             className="w-full flex justify-center items-center h-full rounded-xl"/>
+                                    </button>
+                                ))}
                             </>
                         ) : <Loading/>}
                     </div>
                 </Tabs.Content>
                 <Tabs.Content value="turma">
-                    <div className="w-full h-full flex flex-wrap justify-center items-center gap-8 mt-10 transition-all duration-500">
-                    {turma?.map((turma) => (
-                        <button key={turma.id} className="w-44 flex flex-col items-center bg-white rounded-lg hover:shadow-lg px-4 py-2 gap-2" onClick={() => handleClickSetTurma(turma.id)}>
-                            <h1 className="font-medium text-2xl flex">Turma</h1>
-                            <h1 className="text-lg flex">{turma.dia}</h1>
-                        </button>
-                    ))}
+                    <div
+                        className="w-full h-full flex flex-wrap justify-center items-center gap-8 mt-10 transition-all duration-500">
+                        {turma?.map((turma) => (
+                            <button key={turma.id}
+                                    className="w-44 flex flex-col items-center bg-white rounded-lg hover:shadow-lg px-4 py-2 gap-2"
+                                    onClick={() => handleClickSetTurma(turma.id)}>
+                                <h1 className="font-medium text-2xl flex">Turma</h1>
+                                <h1 className="text-lg flex">{turma.dia}</h1>
+                            </button>
+                        ))}
                     </div>
                 </Tabs.Content>
                 <Tabs.Content value="alunos">
                     <Table.Root size="lg" interactive>
                         <Table.Header>
-                            <Table.Row className="bg-white text-black font-medium" >
+                            <Table.Row className="bg-white text-black font-medium">
                                 <Table.ColumnHeader className="text-black">
                                     <Checkbox.Root
                                         size="sm"
@@ -163,17 +169,18 @@ export default function Faltas(){
                                             )
                                         }}
                                     >
-                                        <Checkbox.HiddenInput />
-                                        <Checkbox.Control />
+                                        <Checkbox.HiddenInput/>
+                                        <Checkbox.Control/>
                                     </Checkbox.Root>
                                 </Table.ColumnHeader>
                                 <Table.ColumnHeader className="text-black">Alunos</Table.ColumnHeader>
                                 <Table.ColumnHeader className="text-black">Email</Table.ColumnHeader>
                             </Table.Row>
                         </Table.Header>
-                        <Table.Body >
+                        <Table.Body>
                             {alunos.map((aluno) => (
-                                <Table.Row key={aluno.id} data-selected={selection.includes(aluno.id) ? "" : undefined} className="bg-white">
+                                <Table.Row key={aluno.id} data-selected={selection.includes(aluno.id) ? "" : undefined}
+                                           className="bg-white hover:bg-gray-100 duration-300 transition-all">
                                     <Table.Cell>
                                         <Checkbox.Root
                                             variant="subtle"
@@ -189,8 +196,8 @@ export default function Faltas(){
                                                 )
                                             }}
                                         >
-                                            <Checkbox.HiddenInput />
-                                            <Checkbox.Control />
+                                            <Checkbox.HiddenInput/>
+                                            <Checkbox.Control/>
                                         </Checkbox.Root>
                                     </Table.Cell>
                                     <Table.Cell>{aluno.nome}</Table.Cell>

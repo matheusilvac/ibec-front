@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { SideBarIcon } from "../sideBar/sideBarIcon";
+import {Button, CloseButton, Drawer, Portal} from "@chakra-ui/react";
+import {BookOpen, House, LibraryBig, User, Menu} from "lucide-react";
 
 export const NavBar = () => {
   return (
@@ -24,7 +25,56 @@ export const NavBar = () => {
           </ul>
         </div>
         <div className="flex sm:hidden pr-2">
-          <SideBarIcon/>
+          <Drawer.Root>
+            <Drawer.Trigger asChild>
+              <Button variant="outline" size="2xl">
+                <Menu />
+              </Button>
+            </Drawer.Trigger>
+            <Portal>
+              <Drawer.Backdrop />
+              <Drawer.Positioner>
+                <Drawer.Content className="bg-[#0A1A2D] text-white">
+                  <Drawer.Header>
+                    <Drawer.Title>IBEC</Drawer.Title>
+                  </Drawer.Header>
+                  <Drawer.Body>
+                    <div className="w-full h-full flex flex-col">
+                      <div className="w-full flex items-center gap-3 text-white py-2 px-3 hover:bg-[#1B2F45] transition-all duration-300 rounded-md cursor-pointer">
+                        <div className="text-3xl">
+                          <House />
+                        </div>
+                        <p className="text-lg font-medium flex">Inicio</p>
+                      </div>
+                      <div className="w-full flex items-center gap-3 text-white py-2 px-3 hover:bg-[#1B2F45] transition-all duration-300 rounded-md cursor-pointer">
+                        <div className="text-3xl">
+                          <LibraryBig />
+                        </div>
+                        <p className="text-lg font-medium flex">Curso</p>
+                      </div>
+                      <div className="w-full flex items-center gap-3 text-white py-2 px-3 hover:bg-[#1B2F45] transition-all duration-300 rounded-md cursor-pointer">
+                        <div className="text-3xl">
+                          <BookOpen />
+                        </div>
+                        <p className="text-lg font-medium flex">Livraria</p>
+                      </div>
+                      <button  className="w-full flex items-center gap-3 text-white py-2 px-3 hover:bg-[#1B2F45] transition-all duration-300 rounded-md cursor-pointer">
+                        <div className="text-3xl">
+                          <User />
+                        </div>
+                        <Link href="/login" className="text-lg font-medium flex">Portal do aluno</Link>
+                      </button>
+                    </div>
+                  </Drawer.Body>
+                  <Drawer.Footer>
+                  </Drawer.Footer>
+                  <Drawer.CloseTrigger asChild>
+                    <CloseButton size="xl" />
+                  </Drawer.CloseTrigger>
+                </Drawer.Content>
+              </Drawer.Positioner>
+            </Portal>
+          </Drawer.Root>
         </div>
       </div>
     </nav>
