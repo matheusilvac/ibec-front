@@ -1,5 +1,5 @@
 "use client"
-import {createListCollection, Portal, Select, Stack, Tabs} from "@chakra-ui/react";
+import {createListCollection, Field, Portal, Select, Stack, Tabs} from "@chakra-ui/react";
 import {BookPlus, GraduationCap} from "lucide-react";
 import {Loading} from "@/components/loading";
 import {useState} from "react";
@@ -172,7 +172,7 @@ export default function LancarNotasProvasPage() {
                                      onValueChange={(e) => setValueNome(e.value)}
                         >
                             <Select.HiddenSelect/>
-                            <Select.Label fontWeight="medium">Nome da prova</Select.Label>
+                            <Select.Label fontWeight="medium">Nome da prova </Select.Label>
                             <Select.Control className="bg-[#f0f0f0] pl-2 rounded-lg border-gray-300">
                                 <Select.Trigger>
                                     <Select.ValueText placeholder="Selecione o nome da prova"/>

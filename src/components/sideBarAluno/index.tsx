@@ -70,7 +70,7 @@ export function AppSidebar() {
             children: [
                 {
                     title: "Lançar faltas",
-                    url: "/portal-aluno/faltas",
+                    url: "/portal-aluno/lancar-faltas",
                 },
                 {
                     title: "Editar Provas",

@@ -1,5 +1,4 @@
 "use client"
-import {usePost} from "@/context/PostContext";
 import {useEffect, useState} from "react";
 import {parseCookies} from "nookies";
 import axios from "axios";
@@ -7,7 +6,6 @@ import {Avatar, HStack, Menu, Portal, Stack, Text} from "@chakra-ui/react";
 import {formatDistanceToNow} from "date-fns";
 import {ptBR} from "date-fns/locale";
 import {Bookmark, CornerUpLeft, Heart, Maximize2, MessageCircle, Send, Trash} from "lucide-react";
-import Link from "next/link";
 import {useUserStore} from "@/context/userContext/UserContext";
 import {PostProps} from "@/types/PostProps";
 import {Loading} from "@/components/loading";

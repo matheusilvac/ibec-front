@@ -1,6 +1,6 @@
-import {Avatar, Button, HStack, Input, Menu, Portal, Stack, Text} from "@chakra-ui/react";
+import {Avatar, HStack, Menu, Portal, Stack, Text} from "@chakra-ui/react";
 import {usePost} from "@/context/PostContext";
-import {Bookmark, CornerUpLeft, Forward, Heart, Maximize2, MessageCircle, Send, Trash} from "lucide-react";
+import {Bookmark, CornerUpLeft, Heart, Maximize2, MessageCircle, Send, Trash} from "lucide-react";
 import {useUserStore} from "@/context/userContext/UserContext";
 import axios from "axios";
 import {useState} from "react";
