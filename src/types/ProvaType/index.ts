@@ -1,4 +1,4 @@
-import {ApostilaProps} from "@/types/apostilaProps";
+import {ApostilaProps} from "@/types/ApostilaProps/apostilaProps";
 
 export type ProvaType = {
     id: number;

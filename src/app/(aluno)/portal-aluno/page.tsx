@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import {parseCookies} from "nookies";
 import axios from "axios";
 import {HStack, Skeleton, Stack} from "@chakra-ui/react";
-import {ApostilaProps} from "@/types/apostilaProps";
 import {CardApostila} from "@/components/CardApostila";
 import {useApostila} from "@/context/ApostilaContext/ApostilasContext";
 import {Loading} from "@/components/loading";
@@ -13,11 +12,11 @@ import {useApostilaApi} from "@/hooks/handleApostilaApi";
 export default function Dashboard() {
   const {user, setUser} = useUserStore();
   const { apostila } = useApostila();
-  const {handleApostilaApi} = useApostilaApi()
+    const {handleApostilaApi} = useApostilaApi();
 
   useEffect(() => {
+      handleApostilaApi();
     const { token } = parseCookies();
-    handleApostilaApi();
     if (token && !user) {
       axios
           .get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user", {
@@ -54,8 +53,13 @@ export default function Dashboard() {
               <p>Matricula:  <strong>{user.matricula.id}</strong></p>
             </div>
           </div>
-            <div className="w-full h-full flex flex-wrap justify-center items-center gap-8 mt-10 transition-all duration-500">
-                {apostila  ?  (<CardApostila/>) : (<Loading/>)}
+            <div className="w-full flex flex-col">
+                <div className="w-full flex justify-start ">
+                    <h1 className="flex text-lg font-medium">Módulos</h1>
+                </div>
+                <div className="w-full h-full flex flex-wrap justify-center items-center gap-4 mt-10 transition-all duration-500">
+                    {apostila  ?  (<CardApostila/>) : (<Loading/>)}
+                </div>
             </div>
         </div>
       </div>

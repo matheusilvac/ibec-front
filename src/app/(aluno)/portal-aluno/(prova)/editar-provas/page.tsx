@@ -27,7 +27,6 @@ export default function EditarProvas() {
                 headers: {Authorization: `Bearer ${token}`}
             })
                 .then((response) => {
-                    console.log(response)
                     if (Array.isArray(response.data)) {
                         setProvas(response.data);
                     } else {
@@ -41,7 +40,10 @@ export default function EditarProvas() {
     }
 
     return (
-        <div className="w-full flex flex-col gap-10">
+        <div className="w-full flex flex-col">
+            <div className="w-full flex justify-start p-2">
+                <h1 className="flex text-4xl font-medium uppercase">editar prova</h1>
+            </div>
             <Tabs.Root defaultValue="members" fitted variant="plain" p="1" value={value}
                        onValueChange={(e) => setValue(e.value)}>
                 <Tabs.List bg="white" rounded="lg" p="2" className="gap-2">

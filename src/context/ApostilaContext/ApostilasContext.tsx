@@ -5,7 +5,7 @@ import {
   useState,
   ReactNode,
 } from "react";
-import {ApostilaProps} from "@/types/apostilaProps";
+import {ApostilaProps} from "@/types/ApostilaProps/apostilaProps";
 
 interface ApostilaContextType {
   apostila: ApostilaProps[] | null;

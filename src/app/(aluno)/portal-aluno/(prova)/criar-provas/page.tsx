@@ -96,7 +96,6 @@ export default function LancarNotasProvasPage() {
                 apostilaID: idApostila,
                 dataProva: valueDate
             }
-            console.log("payload: ", payload)
             axios.post(`https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/prova`, payload, {
                 headers: {Authorization: `Bearer ${token}`}
             })
@@ -130,7 +129,10 @@ export default function LancarNotasProvasPage() {
     }
 
     return (
-        <div className="w-full flex flex-col gap-10">
+        <div className="w-full flex flex-col ">
+            <div className="w-full flex justify-start p-2">
+                <h1 className="flex text-4xl font-medium uppercase">Criar prova</h1>
+            </div>
             <Tabs.Root defaultValue="members" fitted variant="plain" p="1" value={value}
                        onValueChange={(e) => setValue(e.value)}>
                 <Tabs.List bg="white" rounded="lg" p="2" className="gap-2">
@@ -163,8 +165,8 @@ export default function LancarNotasProvasPage() {
                         ) : <Loading/>}
                     </div>
                 </Tabs.Content>
-                <Tabs.Content value="prova">
-                    <Stack gap="4" align="start" maxW="lg" className="bg-white p-4 rounded-lg ">
+                <Tabs.Content value="prova" className="w-full flex justify-center">
+                    <Stack gap="4" align="center" maxW="lg" className="bg-white p-4 rounded-lg w-96">
                         <Select.Root collection={nomeProvas}
                                      size="md"
                                      multiple={false}
