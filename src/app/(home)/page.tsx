@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { ElementoWidget } from "@/components/elementoWidget";
 import { FaBible, FaBook, FaChurch, FaCross } from "react-icons/fa";
 import { IoLibrary } from "react-icons/io5";
@@ -28,10 +28,15 @@ export default function Home() {
               com a verdadeira palavra de Deus e que sejam capazes de gerar bons
               frutos no seu ministério.
               <br />
-              <br />O IBEC tem como propósito maior <span className="border-[#ffcc89] font-bold border-b-2">formar líderes piedosos,
-              alicerçados na verdadeira palavra de Deus.</span>
-              <br/> Assim como uma árvore
-              saudável é enraizada em solo fértil e <strong className="bg-[#ffcc89]">produz frutos de excelência,</strong>
+              <br />O IBEC tem como propósito maior{" "}
+              <span className="border-[#ffcc89] font-bold border-b-2">
+                formar líderes piedosos, alicerçados na verdadeira palavra de
+                Deus.
+              </span>
+              <br /> Assim como uma árvore saudável é enraizada em solo fértil e{" "}
+              <strong className="bg-[#ffcc89]">
+                produz frutos de excelência,
+              </strong>
               buscamos transformar vidas por meio de um ensino sólido,
               fundamentado nas Escrituras.
             </p>

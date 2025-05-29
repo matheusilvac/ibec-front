@@ -3,8 +3,8 @@ import { Field, Stack, Input, Checkbox } from "@chakra-ui/react";
 import { Roboto } from "next/font/google";
 import { PasswordInput } from "@/components/ui/password-input";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { parseCookies, setCookie } from "nookies";
+import { useState } from "react";
+import { parseCookies } from "nookies";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/context/userContext/UserContext";
@@ -15,81 +15,83 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
-export default function Login() {
+export default function TrocarSenhaPage() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
   const { user, setUser } = useUserStore();
+  const { token } = parseCookies();
+  console.log(token);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: "",
-    senha: "",
-  });
-
-  useEffect(() => {
-    const { token } = parseCookies();
-    if (token && user) {
-      router.push("/portal-aluno");
-    }
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   const handleClickButton = async () => {
+    if (formData.newPassword !== formData.confirmPassword) {
+      toaster.create({
+        title: "As senhas não coincidem",
+        description: "A nova senha e a confirmação precisam ser iguais.",
+        type: "error",
+      });
+      return;
+    }
+
     const payload = {
-      email: formData.email,
-      senha: formData.senha,
+      oldPassword: formData.oldPassword,
+      newPassword: formData.newPassword,
     };
+
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/login",
-        payload
+        "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/change-password",
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      const token = res.data.token;
-      const mustChangePassword = res.data.mustChangePassword;
-      setCookie(null, "token", token, {
-        maxAge: 2 * 60 * 60,
-        path: "/",
-        sameSite: "lax",
-      });
-      if (mustChangePassword == true) {
+
+      if (token) {
+        const responseGet = await axios.get(
+          "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setLoading(false);
+        setUser(responseGet.data);
         toaster.create({
           title: "Sucesso!",
           description: "Redirecionando...",
           type: "success",
         });
         setTimeout(() => {
-          router.push("/trocar-senha");
+          router.push("/portal-aluno");
         }, 2000);
       } else {
-        if (token) {
-          const responseGet = await axios.get(
-            "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          setLoading(false);
-          toaster.create({
-            title: "Sucesso!",
-            description: "Redirecionando...",
-            type: "success",
-          });
-          setUser(responseGet.data);
-          setTimeout(() => {
-            router.push("/portal-aluno");
-          }, 2000);
-        } else {
-          setLoading(false);
-          console.log("erro, token não encontrado");
-        }
+        setLoading(false);
+        console.log("erro, token não encontrado");
       }
-    } catch (err) {
+    } catch (err: any) {
       setLoading(false);
-      toaster.create({
-        title: "Erro ao fazer login",
-        description: "Verifique seu email e senha.",
-        type: "error",
-      });
+      if (err.response?.status === 400) {
+        toaster.create({
+          title: "Erro!",
+          description: "Senha atual incorreta.",
+          type: "error",
+        });
+      } else {
+        toaster.create({
+          title: "Erro ao trocar senha",
+          description: "Verifique os campos.",
+          type: "error",
+        });
+      }
     }
   };
 
@@ -102,7 +104,9 @@ export default function Login() {
       className={`${roboto.className} w-full h-full flex flex-col justify-center items-center text-white pt-28 pb-10 px-10`}
     >
       <div className="w-full md:w-3/4 lg:w-2/4 xl:w-1/4 flex h-auto items-center flex-col justify-center gap-5 bg-white rounded-3xl mt-10 p-10 backdrop-blur-lg shadow-md text-[#071322]">
-        <h1 className="w-full flex justify-center text-3xl font-bold">Login</h1>
+        <h1 className="w-full flex justify-center text-3xl font-bold">
+          Trocar senha
+        </h1>
         <form
           className="w-full flex flex-col gap-5"
           onSubmit={(e) => {
@@ -112,22 +116,37 @@ export default function Login() {
         >
           <Field.Root required>
             <Field.Label>
-              Email <Field.RequiredIndicator />
+              Senha atual <Field.RequiredIndicator />
             </Field.Label>
             <Input
-              placeholder="johndoe@example.com"
+              placeholder="Senha antiga"
               variant="flushed"
               pl="5"
-              onChange={(e) => handleInputChange("email", e.target.value)}
+              onChange={(e) => handleInputChange("oldPassword", e.target.value)}
             />
           </Field.Root>
           <Field.Root>
-            <Field.Label>Senha</Field.Label>
+            <Field.Label>
+              Nova senha <Field.RequiredIndicator />
+            </Field.Label>
             <PasswordInput
               variant="flushed"
               pl="5"
-              placeholder="Password"
-              onChange={(e) => handleInputChange("senha", e.target.value)}
+              placeholder="Nova senha"
+              onChange={(e) => handleInputChange("newPassword", e.target.value)}
+            />
+          </Field.Root>
+          <Field.Root>
+            <Field.Label>
+              Confirme a nova senha <Field.RequiredIndicator />
+            </Field.Label>
+            <PasswordInput
+              variant="flushed"
+              pl="5"
+              placeholder="Confirme a senha"
+              onChange={(e) =>
+                handleInputChange("confirmPassword", e.target.value)
+              }
             />
           </Field.Root>
           <Checkbox.Root variant="subtle" color="#071322">
