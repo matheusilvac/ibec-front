@@ -9,7 +9,6 @@ import { useApostila } from "@/context/ApostilaContext/ApostilasContext";
 import { Loading } from "@/components/loading";
 import { useApostilaApi } from "@/hooks/handleApostilaApi";
 import { usePost } from "@/context/PostContext";
-import { useRouter } from "next/navigation";
 import { BarList, BarListData, useChart } from "@chakra-ui/charts";
 
 export default function Dashboard() {
@@ -19,7 +18,6 @@ export default function Dashboard() {
   const [versiculo, setVersiculo] = useState({ texto: "", ref: "" });
   const [mediaGeral, setMediaGeral] = useState({ mediaFinal: 0, faltas: 0, materiasCursadas: 0 });
   const { post, setPost } = usePost();
-  const router = useRouter();
 
   useEffect(() => {
     handleApostilaApi();
@@ -102,10 +100,6 @@ export default function Dashboard() {
     const intervalId = setInterval(fetchPosts, 2000);
     return () => clearInterval(intervalId);
   }, []);
-
-  if (!user) {
-    router.push("/");
-  }
 
    const chart = useChart<BarListData>({
     sort: { by: "value", direction: "desc" },
