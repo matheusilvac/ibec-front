@@ -5,6 +5,7 @@ import {Portal} from "@chakra-ui/react";
 import { Menu } from "@chakra-ui/react";
 import {useUserStore} from "@/context/userContext/UserContext";
 import {HandleUserFunc} from "@/hooks/handleUserFunc";
+import React from "react";
 
 const items = [
     {
@@ -85,7 +86,7 @@ export const SideBarPortalMobile= () => {
                     <Menu.Positioner >
                         <Menu.Content className="bg-white text-black gap-2 p-1">
                             {itemsPerfil.map((item) => (
-                                <>
+                                <React.Fragment key={item.title}>
                                     {item.url ? (<Link href={item?.url}
                                                        className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]">
                                         <div
@@ -107,7 +108,7 @@ export const SideBarPortalMobile= () => {
                                             </div>
                                         </button>
                                     )}
-                                </>
+                                </React.Fragment>
                             ))}
                         </Menu.Content>
                     </Menu.Positioner>

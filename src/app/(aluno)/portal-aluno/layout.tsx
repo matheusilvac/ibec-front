@@ -29,7 +29,7 @@ export default function RootLayout({
     >
       <ProviderContext>
         <AppSidebar />
-        <main className="flex-grow overflow-auto p-10">{children}</main>
+        <main className="flex-grow overflow-x-auto p-10">{children}</main>
         <Toaster />
         <div className="block lg:hidden">
           <SideBarPortalMobile />
