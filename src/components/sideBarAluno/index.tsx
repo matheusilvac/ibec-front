@@ -10,6 +10,7 @@ import {
   MegaphoneOff,
   NotebookPen,
   BookPlus,
+  UserCog,
 } from "lucide-react";
 import { useEffect } from "react";
 import { parseCookies } from "nookies";
@@ -40,6 +41,12 @@ export function AppSidebar() {
       icon: Send,
       roles: ["ALUNO", "PROFESSOR", "ADMIN"],
     },
+    {
+      title: "Alunos",
+      url: "/portal-aluno/alunos",
+      icon: UserCog,
+      roles: ["ADMIN"],
+    },
   ];
 
   const groupedItems = [
@@ -68,7 +75,7 @@ export function AppSidebar() {
           url: "/portal-aluno/lancar-nota",
         },
         {
-          title: "Editar Provas",
+          title: "Editar notas",
           url: "/portal-aluno/editar-nota",
         },
       ],
@@ -83,7 +90,7 @@ export function AppSidebar() {
           url: "/portal-aluno/lancar-faltas",
         },
         {
-          title: "Editar Provas",
+          title: "Editar faltas",
           url: "/portal-aluno/editar-falta",
         },
       ],

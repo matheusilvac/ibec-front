@@ -1,14 +1,10 @@
 "use client";
 import {
-  NativeSelect,
   NumberInput,
-  Portal,
-  Select,
-  Stack,
   Table,
   Tabs,
 } from "@chakra-ui/react";
-import { BookPlus, GraduationCap, SquareMousePointer } from "lucide-react";
+import { GraduationCap, SquareMousePointer } from "lucide-react";
 import { Loading } from "@/components/loading";
 import { useEffect, useState } from "react";
 import { useTurma } from "@/context/TurmaContext";
@@ -209,20 +205,20 @@ export default function LancarNotaPage() {
         <Tabs.Content value="alunos">
           <Table.Root size="lg" interactive>
             <Table.Header className="rounded-lg">
-              <Table.Row className="bg-white text-black font-medium rounded-lg">
-                <Table.ColumnHeader className="text-black">
+              <Table.Row className="bg-[#0A1A2D] text-black font-medium rounded-lg">
+                <Table.ColumnHeader className="text-white">
                   Alunos
                 </Table.ColumnHeader>
-                <Table.ColumnHeader className="text-black">
+                <Table.ColumnHeader className="text-white">
                   Email
                 </Table.ColumnHeader>
-                <Table.ColumnHeader className="text-black">
+                <Table.ColumnHeader className="text-white">
                   Prova
                 </Table.ColumnHeader>
-                <Table.ColumnHeader className="text-black">
+                <Table.ColumnHeader className="text-white">
                   Nota
                 </Table.ColumnHeader>
-                <Table.ColumnHeader className="text-black"></Table.ColumnHeader>
+                <Table.ColumnHeader className="text-white"></Table.ColumnHeader>
               </Table.Row>
             </Table.Header>
             <Table.Body>
