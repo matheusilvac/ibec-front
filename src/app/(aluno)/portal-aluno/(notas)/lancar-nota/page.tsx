@@ -84,7 +84,7 @@ export default function LancarNotaPage() {
           }
         )
         .then((response) => {
-          console.log(response);
+      
           if (Array.isArray(response.data)) {
             setProvas(response.data);
           } else {
@@ -107,7 +107,6 @@ export default function LancarNotaPage() {
       aluno: id,
       prova: Number(provaId),
     };
-    console.log(payload);
     axios
       .post(
         `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/nota`,
@@ -117,7 +116,6 @@ export default function LancarNotaPage() {
         }
       )
       .then((response) => {
-        console.log("res", response);
         toaster.create({
           title: "Sucesso!",
           description: "Nota lançada com sucesso",
@@ -126,7 +124,12 @@ export default function LancarNotaPage() {
         });
       })
       .catch((error) => {
-        console.error("Erro durante a requisição:", error);
+         toaster.create({
+          title: "Erro!",
+          description: "Não foi possivel lançar a nota, tente novamente mais tarde",
+          type: "error",
+          meta: { closable: true },
+        });
       });
   };
 

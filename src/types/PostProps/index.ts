@@ -14,4 +14,5 @@ export type PostProps = {
     dataPost: string
     autor: UsuarioProps
     comentarios: ComentarioProps[];
+    fixado: boolean
 }

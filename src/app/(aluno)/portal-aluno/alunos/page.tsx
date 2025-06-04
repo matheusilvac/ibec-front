@@ -53,6 +53,9 @@ export default function AlunosPage() {
             <Table.ColumnHeader className="text-white">
               Matricula
             </Table.ColumnHeader>
+            <Table.ColumnHeader className="text-white">
+              Ativo
+            </Table.ColumnHeader>
             <Table.ColumnHeader className="text-white"></Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
@@ -68,6 +71,7 @@ export default function AlunosPage() {
                 {aluno.turma.dia === "TERCA" ? "Terça" : "Segunda"}
               </Table.Cell>
               <Table.Cell>{aluno.matricula.id}</Table.Cell>
+              <Table.Cell>{aluno.matricula.ativo === true ? "Sim" : "Não"}</Table.Cell>
               <Table.Cell>
                 <Link href={`alunos/${aluno.id}`}>
                   <Pencil />

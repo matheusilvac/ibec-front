@@ -5,11 +5,11 @@ import {
     useState,
     ReactNode,
 } from "react";
-import {NotaProps} from "@/types/NotaProps";
+import {MediaProps} from "@/types/MediaProps";
 
 interface NotaContextType {
-    nota: NotaProps[] | null;
-    setNota: React.Dispatch<React.SetStateAction<NotaProps[] | null>>;
+    nota: MediaProps[] | null;
+    setNota: React.Dispatch<React.SetStateAction<MediaProps[] | null>>;
 }
 const NotaContext = createContext<NotaContextType | undefined>(undefined);
 
@@ -18,7 +18,7 @@ type NotaInterface = {
 };
 
 export const NotaProvider = ({ children }: NotaInterface) => {
-    const [nota, setNota] = useState<NotaProps[] | null>(null);
+    const [nota, setNota] = useState<MediaProps[] | null>(null);
 
     return (
         <NotaContext.Provider value={{ nota, setNota }}>

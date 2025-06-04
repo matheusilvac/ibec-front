@@ -111,7 +111,7 @@ export default function LancarNotasProvasPage() {
           }
         )
         .then((response) => {
-          console.log(response);
+      
           setValueNome([]);
           setValueModulos([]);
           toaster.create({

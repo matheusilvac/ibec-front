@@ -144,7 +144,7 @@ export default function Dashboard() {
                 <h1 className="text-2xl flex font-bold">Média geral do aluno</h1>
                 <BarList.Root chart={chart}>
                   <BarList.Content>
-                    <BarList.Bar className="text-white"/>
+                    <BarList.Bar className="text-[#e6a44ee7]"/>
                     <BarList.Value />
                   </BarList.Content>
                 </BarList.Root>
@@ -160,11 +160,11 @@ export default function Dashboard() {
             </section>
             <section className="flex flex-col flex-[0.3] bg-white p-4 rounded-lg gap-4">
               <h1 className="w-full flex text-4xl font-light">Avisos 📢</h1>
-              <div className="w-full flex h-full overflow-y-auto">
+              <div className="w-full flex flex-col gap-5 h-full overflow-y-auto">
                 {post?.map((post) => (
                   <div
                     key={post.id}
-                    className="w-full mb-2 border-b-[1px] flex flex-col h-auto gap-1"
+                    className="w-full mb-2 flex flex-col gap-1"
                   >
                     <HStack gap="2">
                       <Avatar.Root colorPalette="blackAlpha">
@@ -181,7 +181,7 @@ export default function Dashboard() {
                     <h1 className="flex text-lg font-semibold">
                       {post.titulo}
                     </h1>
-                    <p className="flex text-md text-wrap break-words whitespace-pre-wrap">
+                    <p className="flex border-b-[1px] pb-2 text-sm text-wrap break-words whitespace-pre-wrap">
                       {post.mensagem}
                     </p>
                   </div>

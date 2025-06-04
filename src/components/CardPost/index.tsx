@@ -15,10 +15,14 @@ import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Link from "next/link";
+import { parseCookies } from "nookies";
+import { toaster } from "../ui/toaster";
+import { useRouter } from "next/navigation";
 
 export const CardPost = () => {
   const { post } = usePost();
   const { user } = useUserStore();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     mensagem: "",
   });
@@ -35,16 +39,83 @@ export const CardPost = () => {
           "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/comentarios",
           payload
         );
+        toaster.create({
+          title: "Sucesso!",
+          description: "Post criado com sucesso.",
+          type: "success",
+        });
       } catch (err) {
-        console.error("Erro ao fazer post:", err);
+        toaster.create({
+          title: "Erro!",
+          description: "Ocorreu um erro ao tentar fazer um post.",
+          type: "error",
+        });
       }
     } else {
-      console.log("diGITE UA MENSAGEM O PERUA");
+      toaster.create({
+        title: "Erro!",
+        description: "Digite uma mensagem para continuar.",
+        type: "error",
+      });
     }
   };
 
   const handleInputChange = (key: keyof typeof formData, value: string) => {
     setFormData((prevData) => ({ ...prevData, [key]: value }));
+  };
+
+  const handleFixarPost = (id: string) => {
+    const { token } = parseCookies();
+    axios
+      .post(
+        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post/${id}/fixar-post`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        toaster.create({
+          title: "Sucesso!",
+          description: "Post fixado com sucesso",
+          type: "success",
+          meta: { closable: true },
+        });
+      })
+      .catch((error) => {
+        toaster.create({
+          title: "Erro!",
+          description: "Não foi possivel fixar o post, tente novamente",
+          type: "error",
+          meta: { closable: true },
+        });
+      });
+  };
+
+  const handleDesafixarPost = (id: string) => {
+    const { token } = parseCookies();
+    axios
+      .post(
+        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post/${id}/desafixar-post`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        toaster.create({
+          title: "Sucesso!",
+          description: "Post desafixado com sucesso",
+          type: "success",
+          meta: { closable: true },
+        });
+      })
+      .catch((error) => {
+        toaster.create({
+          title: "Erro!",
+          description: "Não foi possivel desafixar o post, tente novamente",
+          type: "error",
+          meta: { closable: true },
+        });
+      });
   };
 
   return (
@@ -94,12 +165,29 @@ export const CardPost = () => {
                         <p className="flex text-md">Apagar</p>
                       </button>
                       {user?.role == "ADMIN" || user?.role === "PROFESSOR" ? (
-                        <button className="w-full flex justify-start gap-2 items-center border-none outline-none hover:bg-gray-200/80 ">
-                          <div className="flex pt-[2px]">
-                            <Bookmark size={18} />
-                          </div>
-                          <p className="flex text-md">Fixar</p>
-                        </button>
+                        <>
+                          {post.fixado === true ? (
+                            <button
+                              onClick={() => handleDesafixarPost(post.id)}
+                              className="w-full flex justify-start gap-2 items-center border-none outline-none hover:bg-gray-200/80 "
+                            >
+                              <div className="flex pt-[2px]">
+                                <Bookmark size={18} />
+                              </div>
+                              <p className="flex text-md">Desafixar</p>
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => handleFixarPost(post.id)}
+                              className="w-full flex justify-start gap-2 items-center border-none outline-none hover:bg-gray-200/80 "
+                            >
+                              <div className="flex pt-[2px]">
+                                <Bookmark size={18} />
+                              </div>
+                              <p className="flex text-md">Fixar</p>
+                            </button>
+                          )}
+                        </>
                       ) : (
                         ""
                       )}
@@ -112,7 +200,9 @@ export const CardPost = () => {
 
           <div className="w-full flex text-black flex-col gap-2 py-3 text-sidebar-accent text-ellipsis !line-clamp-[4]">
             {post.titulo && (
-              <h1 className="flex text-lg text-black font-bold">{post.titulo}</h1>
+              <h1 className="flex text-lg text-black font-bold">
+                {post.titulo}
+              </h1>
             )}
             <p className="text-black">{post.mensagem}</p>
           </div>

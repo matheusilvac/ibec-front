@@ -19,7 +19,6 @@ export default function TrocarSenhaPage() {
   const router = useRouter();
   const { user, setUser } = useUserStore();
   const { token } = parseCookies();
-  console.log(token);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     oldPassword: "",

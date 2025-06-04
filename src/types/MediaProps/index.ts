@@ -1,4 +1,4 @@
-export type NotaProps = {
+export type MediaProps = {
     apostila: string;
     media: number;
     situacao: string

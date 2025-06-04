@@ -5,7 +5,7 @@ import { Loading } from "@/components/loading";
 import { useEffect } from "react";
 import { parseCookies } from "nookies";
 import axios from "axios";
-import { NotaProps } from "@/types/NotaProps";
+import { MediaProps } from "@/types/MediaProps";
 import { useUserStore } from "@/context/userContext/UserContext";
 
 export default function BoletimPage() {
@@ -31,7 +31,7 @@ export default function BoletimPage() {
       });
     if (user != null) {
       axios
-        .get<NotaProps[]>(
+        .get<MediaProps[]>(
           `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/medias/${user?.id}/situacao`,
           {
             headers: { Authorization: `Bearer ${token}` },
