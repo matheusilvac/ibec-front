@@ -1,5 +1,5 @@
 "use client";
-import { Pen } from "lucide-react";
+import { Pen, Pencil } from "lucide-react";
 import { Loading } from "@/components/loading";
 import { useEffect, useState } from "react";
 import { parseCookies } from "nookies";
@@ -7,6 +7,7 @@ import axios from "axios";
 import Link from "next/link";
 import { format } from "date-fns";
 import { FaltasType } from "@/types/FaltasType";
+import { Table } from "@chakra-ui/react";
 
 export default function EditarFaltas() {
   const [faltas, setFaltas] = useState<FaltasType[]>([]);
@@ -43,38 +44,47 @@ export default function EditarFaltas() {
       <div className="w-full h-full flex flex-wrap justify-center items-center gap-5 mt-10">
         {faltas ? (
           <>
-            {faltas.map((falta) => (
-              <Link
-                href={`/portal-aluno/editar-notas/${falta.id}`}
-                key={falta.id}
-                className="flex flex-col w-96 h-auto bg-white rounded-lg p-4 gap-2"
-              >
-                <div className="w-full flex justify-between items-center">
-                  <h1>Apostila: {falta.apostila.titulo}</h1>
-                  <button>
-                    <Pen size={16} />
-                  </button>
-                </div>
-                <div className="w-full flex flex-col gap-1">
-                  <div className="w-full flex justify-between items-center">
-                    <p className="font-medium">Nome do aluno:</p>
-                    <p>{falta.aluno.nome}</p>
-                  </div>
-                  <div className="w-full flex justify-between items-center">
-                    <p className="font-medium">Data da prova:</p>
-                    <p>{format(falta.dataAt, "dd/MM/yyyy")}</p>
-                  </div>
-                  <div className="w-full flex justify-between items-center">
-                    <p className="font-medium">Justificada:</p>
-                    <p>{falta.justificada == true ? "Sim" : "Não"}</p>
-                  </div>
-                  <div className="w-full flex justify-between items-center">
-                    <p className="font-medium">Motivo:</p>
-                    <p>{falta.motivo}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+            <Table.Root size="lg" interactive>
+              <Table.Header className="rounded-lg">
+                <Table.Row className="bg-[#0A1A2D] font-medium rounded-lg">
+                  <Table.ColumnHeader className="text-white">
+                    Apostila
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader className="text-white">
+                    Nome do aluno
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader className="text-white">
+                    Data
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader className="text-white">
+                    Justificada
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader className="text-white">
+                    Motivo
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader className="text-white"></Table.ColumnHeader>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {faltas.map((falta) => (
+                  <Table.Row
+                    className="bg-white hover:bg-gray-100 duration-300 transition-all"
+                    key={falta.id}
+                  >
+                    <Table.Cell>{falta.apostila.titulo}</Table.Cell>
+                    <Table.Cell>{falta.aluno.nome}</Table.Cell>
+                    <Table.Cell>{falta.dataAt}</Table.Cell>
+                    <Table.Cell>{falta.justificada}</Table.Cell>
+                    <Table.Cell>{falta.motivo}</Table.Cell>
+                    <Table.Cell>
+                      <Link href={`editar-falta/${falta.id}`}>
+                        <Pencil />
+                      </Link>
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table.Root>
           </>
         ) : (
           <Loading />
