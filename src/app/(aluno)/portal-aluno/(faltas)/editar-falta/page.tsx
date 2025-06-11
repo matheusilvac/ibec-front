@@ -74,7 +74,7 @@ export default function EditarFaltas() {
                     <Table.Cell>{falta.apostila.titulo}</Table.Cell>
                     <Table.Cell>{falta.aluno.nome}</Table.Cell>
                     <Table.Cell>{falta.dataAt}</Table.Cell>
-                    <Table.Cell>{falta.justificada}</Table.Cell>
+                    <Table.Cell>{falta.justificada == true ? "Sim" : "Não"}</Table.Cell>
                     <Table.Cell>{falta.motivo}</Table.Cell>
                     <Table.Cell>
                       <Link href={`editar-falta/${falta.id}`}>
