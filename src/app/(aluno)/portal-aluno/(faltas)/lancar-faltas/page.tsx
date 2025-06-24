@@ -28,7 +28,7 @@ export default function Faltas() {
     handleApostilaApi();
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/turmas`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/turmas`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -52,7 +52,7 @@ export default function Faltas() {
     const { token } = parseCookies();
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/turmas/${id}/alunos`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/turmas/${id}/alunos`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -84,7 +84,7 @@ export default function Faltas() {
       };
       axios
         .post(
-          `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/faltas`,
+          `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/faltas`,
           payload,
           {
             headers: { Authorization: `Bearer ${token}` },

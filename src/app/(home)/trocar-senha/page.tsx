@@ -44,7 +44,7 @@ export default function TrocarSenhaPage() {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/change-password",
+        "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/auth/change-password",
         payload,
         {
           headers: {
@@ -55,7 +55,7 @@ export default function TrocarSenhaPage() {
 
       if (token) {
         const responseGet = await axios.get(
-          "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user",
+          "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/auth/user",
           {
             headers: {
               Authorization: `Bearer ${token}`,

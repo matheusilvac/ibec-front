@@ -36,7 +36,7 @@ export const CardPost = () => {
     if (payload.mensagem != "") {
       try {
         const res = await axios.post(
-          "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/comentarios",
+          "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/comentarios",
           payload
         );
         toaster.create({
@@ -68,7 +68,7 @@ export const CardPost = () => {
     const { token } = parseCookies();
     axios
       .post(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post/${id}/fixar-post`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/post/${id}/fixar-post`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -95,7 +95,7 @@ export const CardPost = () => {
     const { token } = parseCookies();
     axios
       .post(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post/${id}/desafixar-post`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/post/${id}/desafixar-post`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

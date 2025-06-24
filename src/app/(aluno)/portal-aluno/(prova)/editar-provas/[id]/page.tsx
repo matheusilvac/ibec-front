@@ -78,7 +78,7 @@ export default function EditarProvaId({ params }: ProvaPageProps) {
     if (!token) return;
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/prova/${id}`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/prova/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

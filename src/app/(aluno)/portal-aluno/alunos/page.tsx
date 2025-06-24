@@ -15,7 +15,7 @@ export default function AlunosPage() {
     const { token } = parseCookies();
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/users`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/users`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

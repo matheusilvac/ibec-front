@@ -24,7 +24,7 @@ export default function AlunoPage({ params }: PostPageProps) {
     const { token } = parseCookies();
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/faltas/${id}`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/faltas/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -50,7 +50,7 @@ export default function AlunoPage({ params }: PostPageProps) {
     };
     axios
       .put(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/faltas/${id}`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/faltas/${id}`,
         payload,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -74,7 +74,7 @@ export default function AlunoPage({ params }: PostPageProps) {
     const { token } = parseCookies();
     axios
       .delete(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/users/${id}`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/users/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

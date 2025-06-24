@@ -20,7 +20,7 @@ import { Accordion, Avatar, HStack, Span, Stack, Text } from "@chakra-ui/react";
 import { HandleUserFunc } from "@/hooks/handleUserFunc";
 
 export function AppSidebar() {
-  const { user, setUser, clearUser } = useUserStore();
+  const { user, setUser } = useUserStore();
   const { handleLogout } = HandleUserFunc();
   const items = [
     {
@@ -114,7 +114,7 @@ export function AppSidebar() {
     if (token && !user) {
       axios
         .get(
-          "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user",
+          "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/auth/user",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -146,7 +146,7 @@ export function AppSidebar() {
                 <li className="w-full" key={item.title}>
                   <Link
                     href={item.url}
-                    className="flex items-center gap-2 py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]"
+                    className="flex items-center gap-2 py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs active:bg-[#0A1A2D] hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]"
                   >
                     <div className="w-full flex justify-start items-center gap-5 ">
                       <span className="flex items-center justify-center">
@@ -179,7 +179,7 @@ export function AppSidebar() {
                         <Link
                           key={child.title}
                           href={child.url}
-                          className="flex items-center gap-2 py-[0.5rem] pl-8 pr-3 w-full rounded-md text-3xs md:text-2xs transition-colors duration-200 hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]"
+                          className="flex items-center gap-2 py-[0.5rem] pl-8 pr-3 w-full rounded-md text-3xs md:text-2xs transition-colors duration-200 active:bg-[#0A1A2D] hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]"
                         >
                           <span>{child.title}</span>
                         </Link>
@@ -216,7 +216,7 @@ export function AppSidebar() {
                   {item.url ? (
                     <Link
                       href={item?.url}
-                      className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]"
+                      className="flex items-center py-[0.6rem] px-3 w-full rounded-md font-medium transition-colors duration-200 active:bg-[#0A1A2D] text-3xs md:text-2xs hover:bg-[#0A1A2D] hover:text-white text-[#0A1A2D]"
                     >
                       <div className="w-full flex justify-start items-center gap-5 ">
                         <span className="flex items-center justify-center">

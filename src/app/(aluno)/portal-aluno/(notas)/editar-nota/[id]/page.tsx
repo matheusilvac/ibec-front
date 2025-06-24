@@ -27,7 +27,7 @@ export default function NotaPage({ params }: PostPageProps) {
     const { token } = parseCookies();
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/nota/${id}`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/nota/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -52,7 +52,7 @@ export default function NotaPage({ params }: PostPageProps) {
     };
     axios
       .put(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/nota/${id}`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/nota/${id}`,
         payload,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -76,7 +76,7 @@ export default function NotaPage({ params }: PostPageProps) {
     const { token } = parseCookies();
     axios
       .delete(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/users/${id}`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/users/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

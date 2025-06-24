@@ -16,7 +16,7 @@ export default function EditarFaltas() {
     const { token } = parseCookies();
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/faltas`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/faltas`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

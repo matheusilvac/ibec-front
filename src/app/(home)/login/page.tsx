@@ -39,7 +39,7 @@ export default function Login() {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/login",
+        "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/auth/login",
         payload
       );
       const token = res.data.token;
@@ -61,7 +61,7 @@ export default function Login() {
       } else {
         if (token) {
           const responseGet = await axios.get(
-            "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user",
+            "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/auth/user",
             {
               headers: {
                 Authorization: `Bearer ${token}`,

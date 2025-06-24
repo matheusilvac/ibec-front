@@ -29,7 +29,7 @@ export default function ComunidadeAvisos() {
         if (!token) return;
 
         const fetchPosts = () => {
-            axios.get("https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post", {
+            axios.get("https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/post", {
                 headers: { Authorization: `Bearer ${token}` }
             })
                 .then((response) => {
@@ -60,7 +60,7 @@ export default function ComunidadeAvisos() {
         if (payload.mensagem != "") {
             try {
                 const res = await axios.post(
-                    "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post",
+                    "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/post",
                     payload
                 )
                 setIsDialogOpen(false);

@@ -41,7 +41,7 @@ export default function PostPage({ params }: PostPageProps) {
     if (payload.mensagem != "") {
       try {
         const res = await axios.post(
-          "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/comentarios",
+          "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/comentarios",
           payload
         );
       } catch (err) {
@@ -73,7 +73,7 @@ export default function PostPage({ params }: PostPageProps) {
 
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post/${id}`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/post/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -139,11 +139,11 @@ export default function PostPage({ params }: PostPageProps) {
             </div>
           </div>
 
-          <div className="w-full flex flex-col gap-2 py-3 text-sidebar-accent text-ellipsis !line-clamp-[4]">
+          <div className="w-full flex flex-col gap-2 py-3 text-black text-sidebar-accent text-ellipsis !line-clamp-[4]">
             {post?.titulo && (
-              <h1 className="flex text-lg font-bold">{post?.titulo}</h1>
+              <h1 className="flex text-lg font-bold text-black">{post?.titulo}</h1>
             )}
-            <p>{post?.mensagem}</p>
+            <p className=" text-gray-700">{post?.mensagem}</p>
           </div>
 
           <div className="w-full flex justify-between border-b border-gray-300 pb-5">

@@ -104,7 +104,7 @@ export default function LancarNotasProvasPage() {
       };
       axios
         .post(
-          `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/prova`,
+          `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/prova`,
           payload,
           {
             headers: { Authorization: `Bearer ${token}` },

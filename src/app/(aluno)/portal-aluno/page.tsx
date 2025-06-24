@@ -25,7 +25,7 @@ export default function Dashboard() {
     if (token && !user) {
       axios
         .get(
-          "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user",
+          "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/auth/user",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -55,7 +55,7 @@ export default function Dashboard() {
     async function fetchMedia() {
       try {
         const res = await axios.get(
-          `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/medias/${user?.id}/resumo`
+          `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/medias/${user?.id}/resumo`
         );
         const data = res.data;
         setMediaGeral({ mediaFinal: data.mediaFinal, faltas: data.faltas, materiasCursadas:data.materiasCursadas });
@@ -75,7 +75,7 @@ export default function Dashboard() {
     const fetchPosts = () => {
       axios
         .get(
-          "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/post/fixados",
+          "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/post/fixados",
           {
             headers: { Authorization: `Bearer ${token}` },
           }

@@ -16,7 +16,7 @@ export default function BoletimPage() {
     const { token } = parseCookies();
     axios
       .get(
-        "https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/auth/user",
+        "https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/auth/user",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ export default function BoletimPage() {
     if (user != null) {
       axios
         .get<MediaProps[]>(
-          `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/medias/${user?.id}/situacao`,
+          `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/medias/${user?.id}/situacao`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

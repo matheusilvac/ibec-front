@@ -32,7 +32,7 @@ export default function LancarNotaPage() {
     handleApostilaApi();
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/turmas`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/turmas`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -56,7 +56,7 @@ export default function LancarNotaPage() {
     const { token } = parseCookies();
     axios
       .get(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/turmas/${id}/alunos`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/turmas/${id}/alunos`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -78,7 +78,7 @@ export default function LancarNotaPage() {
     if (idApostila) {
       axios
         .get(
-          `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/prova/apostila/${idApostila}`,
+          `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/prova/apostila/${idApostila}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -109,7 +109,7 @@ export default function LancarNotaPage() {
     };
     axios
       .post(
-        `https://portal-aluno-ibec-cgdhfngvhfb2g3f6.canadacentral-01.azurewebsites.net/api/admin/nota`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/nota`,
         payload,
         {
           headers: { Authorization: `Bearer ${token}` },
