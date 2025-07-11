@@ -78,6 +78,10 @@ export function AppSidebar() {
           title: "Editar notas",
           url: "/portal-aluno/editar-nota",
         },
+        {
+          title: "Lançar Média",
+          url: "/portal-aluno/lancar-media",
+        },
       ],
     },
     {

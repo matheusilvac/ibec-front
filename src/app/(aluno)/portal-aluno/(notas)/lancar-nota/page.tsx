@@ -14,7 +14,7 @@ import { useApostila } from "@/context/ApostilaContext/ApostilasContext";
 import { parseCookies } from "nookies";
 import axios from "axios";
 import { toaster } from "@/components/ui/toaster";
-import { ProvaType } from "@/types/ProvaType";
+import { ProvaType } from "@/types/ProvaType"; 
 
 export default function LancarNotaPage() {
   const [value, setValue] = useState<string | null>("modulos");
