@@ -39,7 +39,7 @@ const items = [
   },
   {
     title: "Faltas",
-    url: "/portal-aluno/faltas",
+    url: "/portal-aluno/lancar-faltas",
     icon: MegaphoneOff,
     roles: ["PROFESSOR", "ADMIN"],
   },
@@ -49,7 +49,7 @@ export default items;
 const itemsPerfil = [
   {
     title: "Meu Perfil",
-    url: "/portal-aluno/meu-perfil",
+    url: "/portal-aluno/",
     icon: User,
   },
   {
@@ -68,12 +68,6 @@ const itemsPerfil = [
     icon: NotebookPen,
     roles: ["PROFESSOR", "ADMIN"],
   },
-  {
-      title: "Alunos",
-      url: "/portal-aluno/alunos",
-      icon: UserCog,
-      roles: ["ADMIN"],
-    },
 ];
 
 export const SideBarPortalMobile = () => {

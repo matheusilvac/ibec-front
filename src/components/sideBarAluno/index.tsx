@@ -41,15 +41,24 @@ export function AppSidebar() {
       icon: Send,
       roles: ["ALUNO", "PROFESSOR", "ADMIN"],
     },
-    {
-      title: "Alunos",
-      url: "/portal-aluno/alunos",
-      icon: UserCog,
-      roles: ["ADMIN"],
-    },
   ];
 
   const groupedItems = [
+    {
+      title: "Alunos",
+      icon: UserCog,
+      roles: ["ADMIN"],
+      children: [
+        {
+          title: "Editar Alunos",
+          url: "/portal-aluno/alunos",
+        },
+        {
+          title: "Criar Alunos",
+          url: "/portal-aluno/criar-alunos",
+        },
+      ],
+    },
     {
       title: "Provas",
       icon: BookPlus,

@@ -234,7 +234,7 @@ export default function AlunoPage({ params }: PostPageProps) {
               <Field.Label>
                 Papel <Field.RequiredIndicator />
               </Field.Label>
-              <Input value={aluno?.role} className="pl-2" variant="subtle" />
+              <Input value={aluno?.role} className="pl-2" variant="subtle" disabled/>
             </Field.Root>
             <Field.Root required>
               <Field.Label>
