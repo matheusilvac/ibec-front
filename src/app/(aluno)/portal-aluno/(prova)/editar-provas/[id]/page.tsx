@@ -12,6 +12,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { Check, Trash2 } from "lucide-react";
+import { toaster } from "@/components/ui/toaster";
 
 type ProvaPageProps = {
   params: {
@@ -95,6 +96,61 @@ export default function EditarProvaId({ params }: ProvaPageProps) {
         console.error("Erro durante a requisição:", error);
       });
   }, [id]);
+
+  const handleClickExcluir = () => {
+    const { token } = parseCookies();
+     if (!token) return;
+    axios
+      .delete(
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/prova/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        toaster.create({
+          title: "Sucesso!",
+          description: "Prova removida com sucesso",
+          type: "success",
+          meta: { closable: true },
+        });
+        window.location.href = "/portal-aluno/editar-provas";
+      })
+      .catch((error) => {
+        console.error("Erro durante a requisição:", error);
+      });
+  };
+
+  const handleClickEditar = () => {
+    const { token } = parseCookies();
+     if (!token) return;
+     const payload = {
+      nome: valueNome,
+      modulos: valueModulos.map((modulo) => Number(modulo)),
+      apostilaId: prova?.apostila?.id,
+      dataProva: valueDate
+     }
+    axios
+      .put(
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/prova/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          payload
+        }
+      )
+      .then((response) => {
+        toaster.create({
+          title: "Sucesso!",
+          description: "Prova removida com sucesso",
+          type: "success",
+          meta: { closable: true },
+        });
+        window.location.href = "/portal-aluno/provas";
+      })
+      .catch((error) => {
+        console.error("Erro durante a requisição:", error);
+      });
+  };
 
   return (
     <div className="w-full flex justify-center items-center">
@@ -182,7 +238,7 @@ export default function EditarProvaId({ params }: ProvaPageProps) {
           <button className="flex px-3 py-2 text-white gap-2 rounded-lg bg-green-600 hover:opacity-80 transition-all duration-300">
             <Check /> Editar
           </button>
-          <button className="flex px-3 text-white py-2 gap-2 rounded-lg bg-red-600 hover:opacity-80 transition-all duration-300">
+          <button onClick={handleClickExcluir} className="flex px-3 text-white py-2 gap-2 rounded-lg bg-red-600 hover:opacity-80 transition-all duration-300">
             <Trash2 /> Remover
           </button>
         </div>

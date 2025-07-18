@@ -76,13 +76,13 @@ export default function NotaPage({ params }: PostPageProps) {
     const { token } = parseCookies();
     axios
       .delete(
-        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/users/${id}`,
+        `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/admin/nota/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
       .then((response) => {
-        router.push("/portal-aluno/alunos");
+        router.push("/portal-aluno/editar-nota");
         toaster.create({
           title: "Sucesso!",
           description: "Nota excluida com sucesso!",

@@ -53,9 +53,13 @@ export default function Dashboard() {
 
    useEffect(() => {
     async function fetchMedia() {
+      const { token } = parseCookies();
       try {
         const res = await axios.get(
-          `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/medias/${user?.id}/resumo`
+          `https://portal-aluno-app-e88e2580ba3a.herokuapp.com/api/medias/${user?.id}/resumo`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
         const data = res.data;
         setMediaGeral({ mediaFinal: data.mediaFinal, faltas: data.faltas, materiasCursadas:data.materiasCursadas });
